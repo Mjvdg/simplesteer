@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "madge": "madge app.js -i madgeVisualization.png"
   },
   "author": "",
   "license": "ISC",
@@ -12,5 +13,8 @@
     "lowdb": "^1.0.0",
     "serialport": "^7.1.5",
     "socket.io": "^2.2.0"
+  },
+  "devDependencies": {
+    "madge": "^3.4.4"
   }
 }
