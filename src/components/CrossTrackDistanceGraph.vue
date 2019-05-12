@@ -19,10 +19,6 @@ export default {
   data: function(){
     return {
       datacollection:{
-<<<<<<< HEAD
-=======
-        // labels: [],
->>>>>>> 070f2e4f2c3be8c89cf79b95dc70f21c5e183309
         datasets: [
           {
             borderColor: 'rgb(255, 99, 132)',
