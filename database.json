@@ -1,0 +1,31 @@
+{
+  "abPoints": [
+    {
+      "title": "example",
+      "a": {
+        "latitude": 50.9516,
+        "longitude": 2.64623
+      },
+      "b": {
+        "latitude": 50.9516,
+        "longitude": 2.646222
+      },
+      "time": "2019-03-10T13:42:51.707Z"
+    }
+  ],
+  "settings": {
+    "machineWidth": 140,
+    "steering": {
+      "frontAxleToTargetPointDistance": 3,
+      "pwm": 255,
+      "maxWheelSweep": 45,
+      "antennaToWheelsDistance": 1.5
+    },
+    "steeringAngleSensor": {
+      "maxLeft": 381,
+      "straight": 500,
+      "maxRight": 1000
+    },
+    "antennaHeight": 260
+  }
+}
