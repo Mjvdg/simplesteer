@@ -19,7 +19,7 @@
         <button @click="zoomOut">-</button>
       </div>
     </div>
-    <Map />
+    <Map/>
     <DataGrid />
     <CrossTrackDistanceGraph />
     <ConnectionStatus />    

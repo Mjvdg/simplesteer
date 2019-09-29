@@ -1,7 +1,8 @@
 import VueCookies from 'vue-cookies'
 import { EventBus } from '@/event-bus.js'
 import SVG from 'svg.js';
-function map(){
+
+let Map = () => {
   let dotsize = 4;
   let strokeWidth = 0.1;
   let draw = SVG('svg').size('100%', '300px');
@@ -89,6 +90,7 @@ function map(){
   }
     
   function drawClosestLine(closestLine){
+    
       let scale = VueCookies.get('scale');
       let previousLine = SVG.get('closestLine');
       closestLine = extLine(closestLine);
@@ -113,8 +115,12 @@ function map(){
     }
     // vehicle = draw.circle(dotsize).fill('#904CAF').cx(x).cy(y);
     // console.log(driveBearing);
+  
     vehicle = draw.polygon([[-4,-10],[0,0],[4,-10], [0,-8]]).cx(x).cy(y).fill('#f06').rotate(driveBearing).scale(1/scale).id("tractor_arrow");
-    svgGroup.add(vehicle);
+    //console.log(svgGroup);
+    if(svgGroup != undefined){ //fix small bug
+      svgGroup.add(vehicle);
+    }  
   }
 
   function rotateGroup(angle){
@@ -186,4 +192,4 @@ function extLine(line) {
   return output;
 }
 
-export default map;
+export default Map;

@@ -14,20 +14,25 @@ export default {
   name: 'machineWidth',
   methods: {
     updateWidth: function () {
-      this.$store.commit('updateWidth', this.width);
+      this.$socket.emit('machineWidth', this.width);
     },
     blur: function (event) {
       event.target.blur(); //closeKeyboard
     }
   },
+  mounted(){
+    this.$socket.emit('getMachineWidth');
+  },
   data: function(){
     return {
-      width: 0
+      width: undefined
     }
   },
-  created: function(){
-    this.width = this.$store.state.settings.machineWidth;
-  }
+  sockets: {
+    machineWidth(val) {
+      this.width = val;
+    }
+  },
 }
 </script>
 

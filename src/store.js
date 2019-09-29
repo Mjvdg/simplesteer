@@ -3,17 +3,6 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex)
 
-const moduleSettings = {
-  state: {
-    machineWidth: 140,
-  },
-  mutations: {
-    updateWidth (state, value) {
-      state.machineWidth = Number(value);
-    }
-  }
-}
-
 const moduleConnection = {
   state: {
     isConnected: false,
@@ -100,10 +89,12 @@ const moduleControls = {
       state.B = true;
     },
 
-    SOCKET_STATE: (state, data) => {
+    SOCKET_AB_IS_SET: (state, data) => {
       state.A = data.A;
       state.B = data.B;
-      state.autoSteer = data.autoSteer;
+    },
+    SOCKET_AUTOSTEER_IS_SET: (state, data) => {
+      state.autoSteer = data;
     },
   },
   actions: {},
@@ -114,7 +105,6 @@ export default new Vuex.Store({
   strict: false, //disable for production!
   modules:{
     controls: moduleControls,
-    settings: moduleSettings,
     connection: moduleConnection,
     info: moduleInfo,
   }
