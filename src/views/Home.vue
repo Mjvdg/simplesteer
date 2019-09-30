@@ -19,7 +19,8 @@
         <button @click="zoomOut">-</button>
       </div>
     </div>
-    <Map/>
+    <Map2 />
+    <!-- <TravelMap class="travel-map"/> -->
     <DataGrid />
     <CrossTrackDistanceGraph />
     <ConnectionStatus />    
@@ -35,7 +36,8 @@ import ABButtons from "@/components/ABButtons.vue"
 import MachineWidth from "@/components/MachineWidth.vue"
 import ConnectionStatus from "@/components/ConnectionStatus.vue"
 import GPSinfo from "@/components/GPSinfo.vue"
-import Map from "@/components/Map.vue"
+import Map2 from "@/components/Map2.vue"
+// import TravelMap from "@/components/TravelMap.vue"
 import DataGrid from '@/components/DataGrid.vue'
 import CrossTrackDistanceGraph from '@/components/CrossTrackDistanceGraph.vue'
 import { EventBus } from '@/event-bus'
@@ -48,7 +50,8 @@ export default {
     MachineWidth,
     ConnectionStatus,
     GPSinfo,
-    Map,
+    Map2,
+    // TravelMap,
     DataGrid,
     CrossTrackDistanceGraph
   },
@@ -94,5 +97,8 @@ export default {
     button{
       width: 25px;
     }
+  }
+  .travel-map {
+    height: 400px;
   }
 </style>
