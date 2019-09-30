@@ -3,30 +3,6 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex)
 
-const moduleConnection = {
-  state: {
-    isConnected: false,
-    connectionStatus: 'Connecting...',
-  },
-  mutations: {
-    SOCKET_CONNECT(state){
-      state.isConnected = true;
-      state.connectionStatus= 'Connected'
-    },
-    SOCKET_DISCONNECT(state){
-      state.isConnected = false;
-      state.connectionStatus= 'Disconnected'
-    },
-    SOCKET_ERROR(state){
-      state.isConnected = false;
-      state.connectionStatus= 'Error'
-    },
-    SOCKET_RECONNECTING(state){
-      state.isConnected = false;
-      state.connectionStatus= 'Reconnecting...'
-    }
-  }
-}
 
 const moduleInfo = {
   state: {
@@ -105,7 +81,6 @@ export default new Vuex.Store({
   strict: false, //disable for production!
   modules:{
     controls: moduleControls,
-    connection: moduleConnection,
     info: moduleInfo,
   }
 })

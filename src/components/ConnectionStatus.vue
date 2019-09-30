@@ -1,7 +1,7 @@
 <template>
   <span
-    v-bind:class="{ connected: $store.state.connection.isConnected, isPing }"
-  >{{$store.state.connection.connectionStatus}}</span>
+    v-bind:class="{ connected: this.isConnected, isPing }"
+  >{{connectionStatus}}</span>
 </template>
 
 <script>
@@ -9,13 +9,36 @@ export default {
   name: 'connectionStatus',
   data: function(){
     return {
-      isPing: false
+      isConnected: false,
+      isPing: false,
+      connectionStatus: 'Connecting...'
     }
   },
   sockets: {
     ping(data){
       this.isPing = data;
     }
+  },
+  mounted: function(){
+    this.$io.on('connect', () => {
+      this.isConnected = true;
+      this.connectionStatus = 'Connected';
+    });
+    this.$io.on('disonnect', () => {
+      this.isConnected = false;
+      this.connectionStatus = 'Connected';
+    });
+    this.$io.on('error', () => {
+      this.isConnected = false;
+      this.connectionStatus= 'Error';
+    });
+    this.$io.on('reconnecting', () => {
+      this.isConnected = false;
+      this.connectionStatus= 'Reconnecting...';
+    });
+    this.$io.on('ping', (isPing) => {
+      this.isPing = isPing;
+    });
   }
 }
 </script>
