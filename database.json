@@ -14,7 +14,7 @@
     }
   ],
   "settings": {
-    "machineWidth": 100,
+    "machineWidth": 300,
     "steering": {
       "frontAxleToTargetPointDistance": 3,
       "pwm": 255,
