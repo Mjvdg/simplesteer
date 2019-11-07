@@ -14,14 +14,14 @@ export default {
   name: 'machineWidth',
   methods: {
     updateWidth: function () {
-      this.$socket.emit('machineWidth', this.width);
+      this.$io.emit('machineWidth', this.width);
     },
     blur: function (event) {
       event.target.blur(); //closeKeyboard
     }
   },
   mounted(){
-    this.$socket.emit('getMachineWidth');
+    this.$io.emit('getMachineWidth');
   },
   data: function(){
     return {

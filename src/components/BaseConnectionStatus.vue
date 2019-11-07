@@ -7,16 +7,18 @@
 <script>
 export default {
   name: 'connectionStatus',
-  data: function(){
+  data() {
     return {
-      isPing: false
+      isConnected: false,
+      isPing: false,
+      connectionStatus: 'Connecting...'
     }
   },
   sockets: {
-    ping(data){
+    pingt(data){ //ping is already used
       this.isPing = data;
     }
-  }
+  },
 }
 </script>
 

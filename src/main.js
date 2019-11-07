@@ -4,17 +4,20 @@ import router from './router'
 import store from './store' //added by: vue add vuex
 import VueSocketIOExt from 'vue-socket.io-extended'
 import io from 'socket.io-client'
-import SVG from '@svgdotjs/svg.js'
+import BaseConnectionStatus from '@/components/BaseConnectionStatus.vue';
+import VueCookie from 'vue-cookie';
+//import SVG from '@svgdotjs/svg.js'
 Vue.config.productionTip = false
+Vue.component('BaseConnectionStatus', BaseConnectionStatus);
+Vue.prototype.$io = io(window.location.protocol + '//' + window.location.hostname + ':3000/', {transports: ['websocket']});
 
-Vue.use(
-  VueSocketIOExt, 
-  io(window.location.protocol + '//' + window.location.hostname + ':3000/', {transports: ['websocket']}),
+Vue.use(  
+  VueSocketIOExt,
+  Vue.prototype.$io,
   { store },
-  SVG,
-  // VueCookies
 );
 
+Vue.use(VueCookie);
 new Vue({
   router,
   store,
