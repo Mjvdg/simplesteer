@@ -14,7 +14,7 @@
     }
   ],
   "settings": {
-    "machineWidth": 300,
+    "machineWidth": 140,
     "steering": {
       "frontAxleToTargetPointDistance": 3,
       "pwm": 255,
@@ -26,6 +26,6 @@
       "straight": 500,
       "maxRight": 1000
     },
-    "antennaHeight": 260
+    "antennaHeight": 2.6
   }
 }
