@@ -54,14 +54,16 @@ export default {
 <style lang="scss" scoped>
   .steeringbuttons{
     display: flex;
-    width: 205px;
     height: 50px;
-    justify-content: space-between;
+    width: 130px;
+    justify-content: space-around;
+    
     button{
       border: none;
       background-color: #4CAF50;
       font-size: 20px;
-      width: 100px;
+      
+      width: 60px;
       color: white;
       user-select: none;
       outline: none;

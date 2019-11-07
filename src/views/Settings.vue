@@ -5,16 +5,15 @@
       <h1>Settings</h1>
     </div>
     <input type="text">
-    <ConnectionStatus />
+
   </div>
 </template>
 
 <script>
-import ConnectionStatus from "@/components/ConnectionStatus.vue"
 export default {
   name: 'settings',
   components: {
-    ConnectionStatus,
+    
   }
 }
 </script>

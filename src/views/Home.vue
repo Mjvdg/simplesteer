@@ -13,17 +13,11 @@
       </div>
       <img src="../assets/open-icon.png" width="25"/>
       <img src="../assets/save-icon.png" width="25"/>
-      <router-link to="/Settings"><img src="../assets/settings.png" width="25" height="25"/></router-link>     
-      <div class="zoombuttons">
-        <button @click="zoomIn">+</button>
-        <button @click="zoomOut">-</button>
-      </div>
+      <router-link to="/Settings"><img src="../assets/settings.png" width="25" height="25"/></router-link>
     </div>
-    <Map2 />
-    <!-- <TravelMap class="travel-map"/> -->
+    <Map5 />
     <DataGrid />
     <CrossTrackDistanceGraph />
-    <ConnectionStatus />    
   </div>
 </template>
 
@@ -34,10 +28,8 @@ import SteeringButtons from "@/components/SteeringButtons.vue"
 import AutoButton from "@/components/autoButton.vue"
 import ABButtons from "@/components/ABButtons.vue"
 import MachineWidth from "@/components/MachineWidth.vue"
-import ConnectionStatus from "@/components/ConnectionStatus.vue"
 import GPSinfo from "@/components/GPSinfo.vue"
-import Map2 from "@/components/Map2.vue"
-// import TravelMap from "@/components/TravelMap.vue"
+import Map5 from "@/components/Map5.vue"
 import DataGrid from '@/components/DataGrid.vue'
 import CrossTrackDistanceGraph from '@/components/CrossTrackDistanceGraph.vue'
 import { EventBus } from '@/event-bus'
@@ -48,10 +40,8 @@ export default {
     AutoButton,
     ABButtons,
     MachineWidth,
-    ConnectionStatus,
     GPSinfo,
-    Map2,
-    // TravelMap,
+    Map5,
     DataGrid,
     CrossTrackDistanceGraph
   },
@@ -61,17 +51,14 @@ export default {
     }
   },
   methods: {
-    zoomIn: () => EventBus.$emit('zoomIn'),
-    zoomOut: () => EventBus.$emit('zoomOut'),
+
   }
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
   // @import '/src/assets/css/normalize.css';
-  body{
-    box-sizing: border-box;
-  }
+
   a{
     margin-bottom:0px !important; 
   }
@@ -84,21 +71,10 @@ export default {
       margin-bottom: 5px;
     }
   }
-  .row2{
-    display: flex;
-    justify-content: space-between;
-  }
 
   #app {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
     color: #2c3e50;
   }
-  .zoombuttons{
-    button{
-      width: 25px;
-    }
-  }
-  .travel-map {
-    height: 400px;
-  }
+
 </style>

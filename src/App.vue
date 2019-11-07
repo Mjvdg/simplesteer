@@ -1,15 +1,16 @@
 <template>
-  <div id="app">
-    <keep-alive>
+  <div class="app">
+      <keep-alive>
       <router-view/>
-    </keep-alive>
+      </keep-alive>
+      <BaseConnectionStatus />
   </div>
 </template>
 
 <style lang="scss">
   // @import '/src/assets/css/normalize.css';
 
-#app {
+.app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   color: #2c3e50;
 }

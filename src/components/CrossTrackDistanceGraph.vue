@@ -1,5 +1,5 @@
 <template>
-  <div class="small">
+  <div>
     <line-chart 
       @click.native="clearGraph"
       ref='chart' 
@@ -34,15 +34,17 @@ export default {
   sockets: {
     crossTrackDistance(received){
       this.update(received)
+    },
+    crossTrackDistanceHistory(data){
+      data.forEach(crosstrackDistance => {
+        this.addToDataGraph(crosstrackDistance);
+      });     
     }
   },
   methods: {
     update(received){
       this.removeOldData();
-      this.datacollection.datasets[0].data.push({
-         x: new Date(received.date),
-         y: received.value,
-      })
+      this.addToDataGraph(received);
       this.$refs.chart.render();
     },
     removeOldData() {
@@ -57,13 +59,20 @@ export default {
     clearGraph(){
       this.datacollection.datasets[0].data = [];
       this.$refs.chart.render();
+    },
+    addToDataGraph(data){
+      this.datacollection.datasets[0].data.push({
+        x: new Date(data.date),
+        y: data.value,
+      })
     }
   }
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
   canvas{
     height: 200px !important;
   }
+
 </style>
