@@ -25,8 +25,5 @@ export default {
       background-color: lightcoral;
     }
   }
-  p{
-    margin: 0;
-  }
 </style>
 
