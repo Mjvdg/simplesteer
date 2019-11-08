@@ -32,7 +32,6 @@ import GPSinfo from "@/components/GPSinfo.vue"
 import Map5 from "@/components/Map5.vue"
 import DataGrid from '@/components/DataGrid.vue'
 import CrossTrackDistanceGraph from '@/components/CrossTrackDistanceGraph.vue'
-import { EventBus } from '@/event-bus'
 export default {
   name: 'home',
   components: {
