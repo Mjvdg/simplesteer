@@ -20,7 +20,7 @@ export default {
     background-color: lightgreen;
     padding: 5px;
     margin-right: 5px;
-    width: 70px;
+    width: 80px;
     &.warning{
       background-color: lightcoral;
     }

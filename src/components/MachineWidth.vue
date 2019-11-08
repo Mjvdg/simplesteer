@@ -42,6 +42,7 @@ export default {
     padding: 0 10px;
     line-height: 50px;
     input{
+      background-color: white;
       width: 55px;
       height: 30px;
     }
