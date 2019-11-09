@@ -6,11 +6,13 @@
           <v-icon x-large>mdi-angle-acute</v-icon>
         </v-list-item-icon>
         <v-list-item-content>
-          <v-list-item-title class="headline">Steering angle</v-list-item-title>
+          <v-list-item-title class="headline">Angle sensor</v-list-item-title>
           <v-list-item-subtitle>calibrate steering sensor</v-list-item-subtitle>
         </v-list-item-content>
         <v-list-item-icon>
-          <v-icon>mdi-help-circle-outline</v-icon>
+          <v-btn icon>
+            <v-icon>mdi-help-circle-outline</v-icon>
+          </v-btn>          
         </v-list-item-icon>
       </v-list-item>
     </v-card-title>

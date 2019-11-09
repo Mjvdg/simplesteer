@@ -28,6 +28,7 @@ import SteeringButtons from "@/components/SteeringButtons.vue"
 import AutoButton from "@/components/autoButton.vue"
 import ABButtons from "@/components/ABButtons.vue"
 import MachineWidth from "@/components/MachineWidth.vue"
+
 import GPSinfo from "@/components/GPSinfo.vue"
 import Map5 from "@/components/Map5.vue"
 import DataGrid from '@/components/DataGrid.vue'
