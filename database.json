@@ -14,7 +14,12 @@
     }
   ],
   "settings": {
-    "machineWidth": 140,
+    "machineWidth": 220,
+    "machine": {
+      "antennaHeight": 260,
+      "antennaToFrontAxleDistance": 101,
+      "maxSteeringAngle": 45
+    },
     "steering": {
       "frontAxleToTargetPointDistance": 3,
       "pwm": 255,
@@ -22,9 +27,9 @@
       "antennaToWheelsDistance": 1.5
     },
     "steeringAngleSensor": {
-      "maxLeft": 381,
-      "straight": 500,
-      "maxRight": 1000
+      "maxLeft": 210,
+      "straight": 185,
+      "maxRight": 184
     },
     "antennaHeight": 2.6
   }
