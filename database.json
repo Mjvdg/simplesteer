@@ -31,6 +31,10 @@
       "straight": 185,
       "maxRight": 184
     },
-    "antennaHeight": 2.6
+    "antennaHeight": 2.6,
+    "targetPoint": {
+      "timeAheadSeconds": 5.3,
+      "minimumDistance": 36
+    }
   }
 }
