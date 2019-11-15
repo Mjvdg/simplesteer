@@ -1,5 +1,5 @@
 <template>
-  <v-card class="ma-12">
+  <v-card class="my-7 mx-auto">
     <v-card-title>
       <v-list-item>
         <v-list-item-icon>
@@ -26,18 +26,6 @@
         </table>
         <v-container>
           <v-row v-for="(setting, name) in settings" v-bind:key="name">
-            <v-col>
-              <v-text-field
-                :prepend-inner-icon="setting.icon"
-                type="number"
-                :label="setting.label"
-                outlined
-                :rules="txtSteeringRules"
-                :hint="setting.info"
-                :loading="setting.averaging ? 'info' : false"
-                v-model.number="setting.value"
-              />
-            </v-col>
             <v-col cols="auto">
               <v-btn
                 x-large
@@ -50,22 +38,32 @@
                 <v-icon>mdi-arrow-collapse-all</v-icon>
               </v-btn>
             </v-col>
+            <v-col>
+              <v-text-field
+                :prepend-inner-icon="setting.icon"
+                type="number"
+                :label="setting.label"
+                outlined
+                :rules="txtSteeringRules"
+                :hint="setting.info"
+                :loading="setting.averaging ? 'info' : false"
+                v-model.number="setting.value"
+              />
+            </v-col>
           </v-row>
         </v-container>
-        <v-row justify="end" class="mr-3">
-          <v-btn
-            :disabled="!valid"
-            @click="save"
-            x-large
-            :color="savedEffect ? 'success' : 'primary'"
-          >Save</v-btn>
-        </v-row>
       </v-form>
     </v-card-text>
-
+    <v-card-actions>
+      <v-btn
+        :disabled="!valid"
+        @click="save"
+        x-large
+        :color="savedEffect ? 'success' : 'primary'"
+      >Save</v-btn>
+    </v-card-actions>
     <v-snackbar color="success" top right v-model="savedEffect">
-      <v-icon x-large>mdi-check-bold</v-icon>
-      saved successfully!      
+      <v-icon x-large>mdi-check-bold</v-icon>saved successfully!
       <v-btn dark text @click="savedEffect = false">X</v-btn>
     </v-snackbar>
   </v-card>

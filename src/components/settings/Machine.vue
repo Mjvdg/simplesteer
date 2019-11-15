@@ -1,5 +1,5 @@
 <template>
-  <v-card class="ma-12">
+  <v-card class="my-7 mx-auto">
     <v-card-title>
       <v-list-item>
         <v-list-item-icon>
@@ -18,28 +18,33 @@
           type="number"
           label="Antenna Height (cm)"
           hint="vertical distance from the ground to the gps antennes"
+          outlined
         />
         <v-text-field
           v-model.number="antennaToFrontAxleDistance"
           type="number"
-          label="Distance between front axle and antenna's(cm)"
+          label="antenna to front axle(cm)"
+          hint="Distance between front axle and antenna's"
           :rules="txtMachineRules"
+          outlined
         />
         <v-text-field
           v-model.number="maxSteeringAngle"
           type="number"
           label="Max steering angle (degrees)"
+          hint="angle between straight and maximum steering"
+          outlined
         />
-        <v-row justify="end" class="mr-3">
-          <v-btn
-            :disabled="!valid"
-            @click="save"
-            x-large
-            :color="savedEffect ? 'success' : 'primary'"
-          >Save</v-btn>
-        </v-row>
       </v-form>
     </v-card-text>
+    <v-card-actions>
+      <v-btn
+        :disabled="!valid"
+        @click="save"
+        x-large
+        :color="savedEffect ? 'success' : 'primary'"
+      >Save</v-btn>
+    </v-card-actions>
     <v-snackbar color="success" top right v-model="savedEffect">
       <v-icon x-large>mdi-check-bold</v-icon>saved successfully!
       <v-btn dark text @click="savedEffect = false">X</v-btn>
@@ -66,8 +71,8 @@ export default {
   methods: {
     save() {
       this.$io.emit("saveMachineSettings", {
-        antennaHeight: this.antennaHeight,
-        antennaToFrontAxleDistance: this.antennaToFrontAxleDistance,
+        antennaHeight: this.antennaHeight/100,
+        antennaToFrontAxleDistance: this.antennaToFrontAxleDistance /100,
         maxSteeringAngle: this.maxSteeringAngle
       });
     }
@@ -93,13 +98,13 @@ export default {
       antennaToFrontAxleDistance,
       maxSteeringAngle
     }) {
-      this.antennaHeight = antennaHeight;
-      this.antennaToFrontAxleDistance = antennaToFrontAxleDistance;
+      this.antennaHeight = antennaHeight*100;
+      this.antennaToFrontAxleDistance = antennaToFrontAxleDistance *100;
       this.maxSteeringAngle = maxSteeringAngle;
     }
   }
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 </style>

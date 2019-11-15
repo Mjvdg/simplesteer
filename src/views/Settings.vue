@@ -6,9 +6,11 @@
       </v-btn>
       <v-toolbar-title>Settings</v-toolbar-title>
     </v-app-bar>
-    <v-content>
-      <AngleSensor />
-      <Machine />
+    <v-content class="px-8">
+      <div class="d-flex flex-wrap">
+        <AngleSensor />
+        <Machine />
+      </div>
       <TargetPoint />
       <Steering />
     </v-content>

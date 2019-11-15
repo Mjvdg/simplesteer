@@ -8,6 +8,14 @@
       <th>Speed: </th>
       <td>{{currentSpeed}}km/h</td>
     </tr>
+    <tr>      
+      <th>Steering angle: </th>
+      <td>{{currentWheelAngle}}°</td>
+    </tr>
+    <tr>      
+      <th>Target steering angle: </th>
+      <td>{{targetSteeringAngle}}°</td>
+    </tr>
     <tr v-bind:class="{disabled: currentLineNumber===undefined}">      
       <th>LineNr: </th>
       <td>{{currentLineNumber}}</td>
@@ -22,7 +30,9 @@ export default {
     return {
       crossTrackDistance: 0,
       currentSpeed: 0,
-      currentLineNumber: undefined
+      currentLineNumber: undefined,
+      currentWheelAngle: undefined,
+      targetSteeringAngle: undefined,
     }
   },
   sockets: {
@@ -34,6 +44,12 @@ export default {
     },
     currentLineNumber(data){
       this.currentLineNumber = data;
+    },
+    currentSteeringAngle(data){
+      this.currentWheelAngle = parseFloat(data.value).toFixed(2);
+    },
+    targetSteeringAngle(data){
+      this.targetSteeringAngle = parseFloat(data.value).toFixed(2);
     }
   }
 }

@@ -1,78 +1,78 @@
 <template>
   <div>
-    <line-chart 
+    <line-chart
+      class="crossTrackDistanceGraph"
       @click.native="clearGraph"
-      ref='chart' 
-      :chart-data="datacollection" 
+      ref="chart"
+      :chart-data="datacollection"
       graph-title="CrossTrack Distance (cm)"
     />
   </div>
 </template>
 
 <script>
-import LineChart from '../inc/lineChart.js'
+import LineChart from "../inc/lineChart.js";
 export default {
-  name: 'crossTrackDistanceGraph',
+  name: "crossTrackDistanceGraph",
   components: {
     LineChart
   },
-  data: function(){
+  data: function() {
     return {
-      datacollection:{
+      datacollection: {
         datasets: [
           {
-            borderColor: 'rgb(255, 99, 132)',
+            borderColor: "rgb(255, 99, 132)",
             data: [],
             fill: false,
             pointRadius: 0,
             borderWidth: 1.5
-          },
+          }
         ]
       }
-    }
+    };
   },
   sockets: {
-    crossTrackDistance(received){
-      this.update(received)
+    crossTrackDistance(received) {
+      this.update(received);
     },
-    crossTrackDistanceHistory(data){
+    crossTrackDistanceHistory(data) {
       data.forEach(crosstrackDistance => {
         this.addToDataGraph(crosstrackDistance);
-      });     
+      });
     }
   },
   methods: {
-    update(received){
+    update(received) {
       this.removeOldData();
       this.addToDataGraph(received);
       this.$refs.chart.render();
     },
     removeOldData() {
-      this.datacollection.datasets.forEach((dataset) => {        
-          dataset.data = dataset.data.filter(isYoung);
-      });      
-      function isYoung(history){
-          let isYoung = (history.x.getTime() + 60*1000) > new Date().getTime();
-          return isYoung;
+      this.datacollection.datasets.forEach(dataset => {
+        dataset.data = dataset.data.filter(isYoung);
+      });
+      function isYoung(history) {
+        let isYoung = history.x.getTime() + 60 * 1000 > new Date().getTime();
+        return isYoung;
       }
     },
-    clearGraph(){
+    clearGraph() {
       this.datacollection.datasets[0].data = [];
       this.$refs.chart.render();
     },
-    addToDataGraph(data){
+    addToDataGraph(data) {
       this.datacollection.datasets[0].data.push({
         x: new Date(data.date),
-        y: data.value,
-      })
+        y: data.value
+      });
     }
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>
-  canvas{
-    height: 200px !important;
-  }
-
+.crossTrackDistanceGraph {
+  height: 150px !important;
+}
 </style>

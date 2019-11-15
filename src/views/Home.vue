@@ -16,8 +16,10 @@
       <router-link to="/Settings"><img src="../assets/settings.png" width="25" height="25"/></router-link>
     </div>
     <Map5 />
-    <DataGrid />
+    
     <CrossTrackDistanceGraph />
+    <SteeringGraph />
+    <DataGrid />
   </div>
 </template>
 
@@ -32,6 +34,8 @@ import GPSinfo from "@/components/GPSinfo.vue"
 import Map5 from "@/components/Map5.vue"
 import DataGrid from '@/components/DataGrid.vue'
 import CrossTrackDistanceGraph from '@/components/CrossTrackDistanceGraph.vue'
+import SteeringGraph from '@/components/SteeringGraph.vue'
+
 export default {
   name: 'home',
   components: {
@@ -42,7 +46,8 @@ export default {
     GPSinfo,
     Map5,
     DataGrid,
-    CrossTrackDistanceGraph
+    CrossTrackDistanceGraph,
+    SteeringGraph
   },
   computed:{
     count() {

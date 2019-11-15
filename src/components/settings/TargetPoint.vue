@@ -1,5 +1,5 @@
 <template>
-  <v-card class="ma-8">
+  <v-card class="my-7">
     <v-card-title>
       <v-list-item>
         <v-list-item-icon>
@@ -12,29 +12,17 @@
       </v-list-item>
     </v-card-title>
     <v-card-text>
-      <v-subheader class="pl-0">seconds ahead</v-subheader>
-      <v-slider
-        v-model="timeAheadSeconds"
-        thumb-label="always"
-        prepend-icon="mdi-flash"
-        append-icon="mdi-turtle"
-        step="0.1"
-        min="0.1"
-        max="10"
-      ></v-slider>
-      <v-subheader class="pl-0">minimum distance (cm)</v-subheader>
-      <v-slider
-        v-model="minimumDistance"
-        thumb-label="always"
-        prepend-icon="mdi-flash"
-        append-icon="mdi-turtle"
-        step="1"
-        min="10"
-        max="200"
-      ></v-slider>
-      <v-row justify="end" class="mr-3">
-        <v-btn @click="save" x-large :color="'primary'">Save</v-btn>
-      </v-row>
+      <v-subheader class="pl-0">Time ahead: {{timeAheadSeconds}} sec</v-subheader>
+      <v-slider v-model="timeAheadSeconds" step="0.1" min="0.1" max="10">
+        <v-icon slot="prepend" v-ripple @click="timeAheadSeconds-=0.1">mdi-flash</v-icon>
+        <v-icon slot="append" v-ripple @click="timeAheadSeconds+=0.1">mdi-turtle</v-icon>
+      </v-slider>
+      <v-subheader class="pl-0">Minimum distance: {{minimumDistance}} cm</v-subheader>
+      <v-slider v-model="minimumDistance" step="1" min="10" max="200">
+        <v-icon slot="prepend" v-ripple @click="minimumDistance-=1">mdi-flash</v-icon>
+        <v-icon slot="append" v-ripple @click="minimumDistance+=1">mdi-turtle</v-icon>
+      </v-slider>
+      <v-btn @click="save" x-large :color="'primary'">Save</v-btn>
     </v-card-text>
     <v-snackbar color="success" top right v-model="savedEffect">
       <v-icon x-large>mdi-check-bold</v-icon>saved successfully!
@@ -56,7 +44,7 @@ export default {
     save() {
       this.$socket.emit("saveTargetPointSettings", {
         timeAheadSeconds: this.timeAheadSeconds,
-        minimumDistance: this.minimumDistance
+        minimumDistance: this.minimumDistance / 100
       });
     }
   },
@@ -66,7 +54,7 @@ export default {
   sockets: {
     targetPointSettings({ timeAheadSeconds, minimumDistance }) {
       this.timeAheadSeconds = timeAheadSeconds;
-      this.minimumDistance = minimumDistance;
+      this.minimumDistance = minimumDistance * 100;
     },
     targetPointSettingsSaveSuccess() {
       this.savedEffect = true;
