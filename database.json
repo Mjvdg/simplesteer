@@ -14,27 +14,31 @@
     }
   ],
   "settings": {
-    "machineWidth": 220,
+    "machineWidth": 330,
     "machine": {
-      "antennaHeight": 260,
-      "antennaToFrontAxleDistance": 101,
+      "antennaHeight": 2.6,
+      "antennaToFrontAxleDistance": 1.01,
       "maxSteeringAngle": 45
     },
     "steering": {
-      "frontAxleToTargetPointDistance": 3,
-      "pwm": 255,
-      "maxWheelSweep": 45,
-      "antennaToWheelsDistance": 1.5
+      "method": "hydraulic",
+      "mode": "pid",
+      "pid": {
+        "p": 1,
+        "i": "0",
+        "d": 1
+      },
+      "toleranceDegrees": 0.3
     },
     "steeringAngleSensor": {
-      "maxLeft": 210,
-      "straight": 185,
-      "maxRight": 184
+      "maxLeft": 10,
+      "straight": 200,
+      "maxRight": 500
     },
     "antennaHeight": 2.6,
     "targetPoint": {
-      "timeAheadSeconds": 5.3,
-      "minimumDistance": 36
+      "timeAheadSeconds": 1.5,
+      "minimumDistance": 0.33
     }
   }
 }

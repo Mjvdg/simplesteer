@@ -1,5 +1,5 @@
 "use strict";
-require('./lib/ArduinoApi')();
+require('./lib/ArduinoApi').open();
 const RtkClient = require('./lib/RtkClient');
 const State = require('./lib/state');
 require('./lib/socketIO');
