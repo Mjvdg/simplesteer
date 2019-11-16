@@ -5,6 +5,7 @@
       <SteeringButtons />
       <ABButtons />
       <MachineWidth />  
+      <LineOffset />
     </div>
     <div class="flexContainer">
       <div>
@@ -30,6 +31,7 @@ import SteeringButtons from "@/components/SteeringButtons.vue"
 import AutoButton from "@/components/autoButton.vue"
 import ABButtons from "@/components/ABButtons.vue"
 import MachineWidth from "@/components/MachineWidth.vue"
+import LineOffset from "@/components/LineOffset.vue"
 import GPSinfo from "@/components/GPSinfo.vue"
 import Map5 from "@/components/Map5.vue"
 import DataGrid from '@/components/DataGrid.vue'
@@ -43,6 +45,7 @@ export default {
     AutoButton,
     ABButtons,
     MachineWidth,
+    LineOffset,
     GPSinfo,
     Map5,
     DataGrid,

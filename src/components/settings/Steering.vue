@@ -27,7 +27,7 @@
         <v-slider
           hint="changes the speed of the electromotor"
           min="0"
-          max="1024"
+          max="255"
           v-model="motorPwm"
         >
           <v-icon slot="prepend" @click="motorPwm-=1">mdi-speedometer-slow</v-icon>
@@ -44,6 +44,7 @@
           <v-text-field
             v-model.number="pid.p"
             label="P"
+            prepend-inner-icon="mdi-flash"
             outlined
             :rules="pidRules"
             hint="Aggressiveness"
@@ -53,6 +54,7 @@
             v-show="false"
             v-model.number="pid.i"
             label="I"
+            
             :rules="pidRules"
             hint="sum error (recommended: 0)"
             outlined
@@ -61,6 +63,7 @@
           <v-text-field
             :rules="pidRules"
             v-model.number="pid.d"
+            prepend-inner-icon="mdi-turtle"
             hint="Dampening"
             label="D"
             outlined

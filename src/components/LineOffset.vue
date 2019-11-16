@@ -1,9 +1,9 @@
 <template>
-  <div class="machine_width">
-    <span>width (cm): </span>
+  <div class="lineOffset">
+    <span>offset (cm): </span>
     <input type="number" 
-      v-model.number="width"
-      @blur="updateWidth"
+      v-model.number="offset"
+      @blur="updateOffset"
       @keyup.enter="blur"
     >
   </div>  
@@ -11,33 +11,33 @@
 
 <script>
 export default {
-  name: 'machineWidth',
+  name: 'lineOffset',
   methods: {
-    updateWidth: function () {
-      this.$io.emit('machineWidth', this.width);
+    updateOffset: function () {
+      this.$io.emit('lineOffset', this.offset/100);
     },
     blur: function (event) {
       event.target.blur(); //closeKeyboard
     }
   },
   mounted(){
-    this.$io.emit('getMachineWidth');
+    this.$io.emit('getLineOffset');
   },
   data: function(){
     return {
-      width: undefined
+      offset: undefined
     }
   },
   sockets: {
-    machineWidth(val) {
-      this.width = val;
+    lineOffset(val) {
+      this.offset = val * 100;
     }
   },
 }
 </script>
 
 <style lang="scss" scoped>
-  .machine_width{
+  .lineOffset{
     background-color: #ffa500;
     padding: 0 10px;
     line-height: 50px;
