@@ -14,7 +14,8 @@
     }
   ],
   "settings": {
-    "machineWidth": 330,
+    "machineWidth": 800,
+    "lineOffset": 0,
     "machine": {
       "antennaHeight": 2.6,
       "antennaToFrontAxleDistance": 1.01,
