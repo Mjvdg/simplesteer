@@ -42,13 +42,9 @@
         :disabled="!valid"
         @click="save"
         x-large
-        :color="savedEffect ? 'success' : 'primary'"
+        color="primary"
       >Save</v-btn>
     </v-card-actions>
-    <v-snackbar color="success" top right v-model="savedEffect">
-      <v-icon x-large>mdi-check-bold</v-icon>saved successfully!
-      <v-btn dark text @click="savedEffect = false">X</v-btn>
-    </v-snackbar>
   </v-card>
 </template>
 
@@ -58,7 +54,6 @@ export default {
   data() {
     return {
       valid: false,
-      savedEffect: false,
       txtMachineRules: [
         v => !!v || "is required",
         v => v > 0 || "must be greater than 0"
@@ -80,19 +75,7 @@ export default {
   mounted() {
     this.$io.emit("getMachineSettings");
   },
-  watch: {
-    savedEffect(val) {
-      if (val) {
-        setTimeout(() => {
-          this.savedEffect = false;
-        }, 2500);
-      }
-    }
-  },
   sockets: {
-    machineSettingsSaveSuccess() {
-      this.savedEffect = true;
-    },
     machineSettings({
       antennaHeight,
       antennaToFrontAxleDistance,

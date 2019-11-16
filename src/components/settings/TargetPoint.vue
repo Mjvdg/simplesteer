@@ -24,10 +24,6 @@
       </v-slider>
       <v-btn @click="save" x-large :color="'primary'">Save</v-btn>
     </v-card-text>
-    <v-snackbar color="success" top right v-model="savedEffect">
-      <v-icon x-large>mdi-check-bold</v-icon>saved successfully!
-      <v-btn dark text @click="savedEffect = false">X</v-btn>
-    </v-snackbar>
   </v-card>
 </template>
 
@@ -35,7 +31,6 @@
 export default {
   data() {
     return {
-      savedEffect: false,
       timeAheadSeconds: undefined,
       minimumDistance: undefined
     };
@@ -55,9 +50,6 @@ export default {
     targetPointSettings({ timeAheadSeconds, minimumDistance }) {
       this.timeAheadSeconds = timeAheadSeconds;
       this.minimumDistance = minimumDistance * 100;
-    },
-    targetPointSettingsSaveSuccess() {
-      this.savedEffect = true;
     }
   },
   watch: {

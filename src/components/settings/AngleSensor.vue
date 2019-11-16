@@ -59,13 +59,9 @@
         :disabled="!valid"
         @click="save"
         x-large
-        :color="savedEffect ? 'success' : 'primary'"
+        color="primary"
       >Save</v-btn>
     </v-card-actions>
-    <v-snackbar color="success" top right v-model="savedEffect">
-      <v-icon x-large>mdi-check-bold</v-icon>saved successfully!
-      <v-btn dark text @click="savedEffect = false">X</v-btn>
-    </v-snackbar>
   </v-card>
 </template>
 
@@ -80,7 +76,6 @@ export default {
     return {
       valid: false,
       rawSteeringValue: 123,
-      savedEffect: false,
       txtSteeringRules: [
         v => !!v || "is required",
         v => (v > 0 && v < 1024) || "must be between 0 and 1024"
@@ -146,19 +141,9 @@ export default {
           this.settings.maxRight.value = this.rawSteeringValue;
         }
       }
-    },
-    savedEffect(val) {
-      if (val) {
-        setTimeout(() => {
-          this.savedEffect = false;
-        }, 2500);
-      }
     }
   },
   sockets: {
-    angleSensorSaveSuccess() {
-      this.savedEffect = true;
-    },
     angleSensorSettings({ maxLeft, straight, maxRight }) {
       this.settings.maxLeft.value = maxLeft;
       this.settings.straight.value = straight;

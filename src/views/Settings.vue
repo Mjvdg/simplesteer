@@ -13,6 +13,7 @@
       </div>
       <TargetPoint />
       <Steering />
+      <SaveSettingsSuccess />
     </v-content>
     <v-footer color="primary lighten-1" dark>
       <v-row justify="center">
@@ -27,13 +28,15 @@ import AngleSensor from "@/components/settings/AngleSensor.vue";
 import Machine from "@/components/settings/Machine.vue";
 import TargetPoint from "@/components/settings/TargetPoint.vue";
 import Steering from "@/components/settings/Steering.vue";
+import SaveSettingsSuccess from '@/components/settings/SaveSettingsSuccess.vue';
 export default {
   name: "settings",
   components: {
     AngleSensor,
     Machine,
     TargetPoint,
-    Steering
+    Steering,
+    SaveSettingsSuccess
   }
 };
 </script>

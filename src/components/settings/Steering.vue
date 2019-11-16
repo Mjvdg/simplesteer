@@ -24,12 +24,7 @@
       </v-radio-group>
       <div v-if="method === 'motorOnWheel'">
         <v-subheader class="pl-0">Motor pwm: {{motorPwm}}</v-subheader>
-        <v-slider
-          hint="changes the speed of the electromotor"
-          min="0"
-          max="255"
-          v-model="motorPwm"
-        >
+        <v-slider hint="changes the speed of the electromotor" min="0" max="255" v-model="motorPwm">
           <v-icon slot="prepend" @click="motorPwm-=1">mdi-speedometer-slow</v-icon>
           <v-icon slot="append" @click="motorPwm+=1">mdi-speedometer</v-icon>
         </v-slider>
@@ -38,6 +33,18 @@
         <v-radio label="simple" value="simple"></v-radio>
         <v-radio label="PID" value="pid"></v-radio>
       </v-radio-group>
+      <div v-if="method === 'motorOnWheel'">
+        <v-subheader class="pl-0">Minimum motor pwm: {{minimumMotorPwm}}</v-subheader>
+        <v-slider
+          hint="changes the speed of the electromotor"
+          min="0"
+          max="255"
+          v-model="minimumMotorPwm"
+        >
+          <v-icon slot="prepend" @click="minimumMotorPwm-=1">mdi-speedometer-slow</v-icon>
+          <v-icon slot="append" @click="minimumMotorPwm+=1">mdi-speedometer</v-icon>
+        </v-slider>
+      </div>
       <div v-if="mode === 'pid'">
         <v-subheader class="pl-0">PID settings</v-subheader>
         <v-form v-model="valid" class="d-flex">
@@ -48,16 +55,6 @@
             outlined
             :rules="pidRules"
             hint="Aggressiveness"
-            type="number"
-          />
-          <v-text-field
-            v-show="false"
-            v-model.number="pid.i"
-            label="I"
-            
-            :rules="pidRules"
-            hint="sum error (recommended: 0)"
-            outlined
             type="number"
           />
           <v-text-field
@@ -88,10 +85,10 @@ export default {
       mode: "simple",
       toleranceDegrees: undefined,
       motorPwm: undefined,
+      minimumMotorPwm: undefined,
       pidRules: [v => !!v || "is required", v => v >= 0 || "must be >= 0"],
       pid: {
         p: undefined,
-        i: undefined,
         d: undefined
       }
     };
@@ -105,21 +102,22 @@ export default {
         method: this.method,
         mode: this.mode,
         pid: this.pid,
-        toleranceDegrees: this.toleranceDegrees
+        toleranceDegrees: this.toleranceDegrees,
+        minimumMotorPwm: this.minimumMotorPwm
       });
     }
   },
   sockets: {
-    steeringSettings({ method, mode, pid, toleranceDegrees }) {
+    steeringSettings({ method, mode, pid, toleranceDegrees, minimumMotorPwm }) {
       this.method = method;
       this.mode = mode;
       this.pid = pid;
       this.toleranceDegrees = toleranceDegrees;
+      this.minimumMotorPwm = minimumMotorPwm;
     }
   }
 };
 </script>
 
 <style lang="scss" scoped>
-
 </style>
