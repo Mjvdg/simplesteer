@@ -37,14 +37,14 @@ export default {
   },
   methods: {
     save() {
-      this.$socket.emit("saveTargetPointSettings", {
+      this.$socket.client.emit("saveTargetPointSettings", {
         timeAheadSeconds: this.timeAheadSeconds,
         minimumDistance: this.minimumDistance / 100
       });
     }
   },
   mounted() {
-    this.$socket.emit("getTargetPointSettings");
+    this.$socket.client.emit("getTargetPointSettings");
   },
   sockets: {
     targetPointSettings({ timeAheadSeconds, minimumDistance }) {

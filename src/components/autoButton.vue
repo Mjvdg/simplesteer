@@ -18,7 +18,7 @@ export default {
   methods:{
     toggleAuto(){
       this.$store.commit('toggleAutosteer');
-      this.$socket.emit('isAutosteerEnabled', this.$store.state.controls.autoSteer);
+      this.$socket.client.emit('isAutosteerEnabled', this.$store.state.controls.autoSteer);
     }
   }
 }

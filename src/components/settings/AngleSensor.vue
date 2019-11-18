@@ -109,11 +109,11 @@ export default {
     };
   },
   mounted() {
-    this.$socket.emit("getAngleSensorSettings");
+    this.$socket.client.emit("getAngleSensorSettings");
   },
   methods: {
     save() {
-      this.$socket.emit("saveAngleSensorSettings", {
+      this.$socket.client.emit("saveAngleSensorSettings", {
         maxLeft: this.settings.maxLeft.value,
         straight: this.settings.straight.value,
         maxRight: this.settings.maxRight.value

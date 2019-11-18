@@ -48,7 +48,7 @@ export default {
     });
     this.map.touchZoomRotate.disableRotation();
     this.map.on("load", () => {
-      this.$socket.emit("mapIsReady");
+      this.$socket.client.emit("mapIsReady");
     });
     this.map.on("zoom", () => {
       this.$cookie.set("mapZoomLevel", this.map.getZoom(), { expires: "1Y" });

@@ -98,7 +98,7 @@ export default {
   },
   methods: {
     save() {
-      this.$socket.emit("saveSteeringSettings", {
+      this.$socket.client.emit("saveSteeringSettings", {
         method: this.method,
         mode: this.mode,
         pid: this.pid,

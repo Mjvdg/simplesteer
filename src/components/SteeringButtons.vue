@@ -33,19 +33,19 @@ export default {
   methods:{
     leftPressed: function () {
       this.$store.commit('startTurnLeft');      
-      this.$socket.emit('turnLeft');
+      this.$socket.client.emit('turnLeft');
     },
     leftReleased: function(){
       this.$store.commit('stopTurnLeft');
-      this.$socket.emit('turnStop');
+      this.$socket.client.emit('turnStop');
     },
     rightPressed: function(){
       this.$store.commit('startTurnRight');
-      this.$socket.emit('turnRight');
+      this.$socket.client.emit('turnRight');
     },
     rightReleased: function(){
       this.$store.commit('stopTurnRight');
-      this.$socket.emit('turnStop');
+      this.$socket.client.emit('turnStop');
     }
   }
 }

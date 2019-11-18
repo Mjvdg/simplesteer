@@ -27,11 +27,11 @@ export default {
   methods: {
     setA: function() {
       this.$store.commit('setA');
-      this.$socket.emit('setA');
+      this.$socket.client.emit('setA');
     },
     setB: function() {
       this.$store.commit('setB');
-      this.$socket.emit('setB');
+      this.$socket.client.emit('setB');
     }
   }
 }
