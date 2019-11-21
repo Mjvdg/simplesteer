@@ -12,11 +12,10 @@
   "dependencies": {
     "@turf/turf": "^5.1.6",
     "lowdb": "^1.0.0",
+    "nmea-simple": "^2.3.0",
     "node-pid-controller": "^1.0.1",
-    "serialport": "^7.1.5",
+    "serialport": "^8.0.5",
     "socket.io": "^2.3.0"
   },
-  "devDependencies": {
-    "madge": "^3.6.0"
-  }
+  "devDependencies": {}
 }

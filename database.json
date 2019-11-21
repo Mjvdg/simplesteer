@@ -14,7 +14,7 @@
     }
   ],
   "settings": {
-    "machineWidth": 1100,
+    "machineWidth": 400,
     "lineOffset": 0,
     "machine": {
       "antennaHeight": 2.66,

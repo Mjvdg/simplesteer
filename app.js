@@ -1,4 +1,5 @@
 "use strict";
+require('./lib/GpsReceivers').setup();
 require('./lib/ArduinoApi').open();
 const RtkClient = require('./lib/RtkClient');
 const State = require('./lib/state');
