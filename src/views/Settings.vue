@@ -14,6 +14,7 @@
       <TargetPoint />
       <Steering />
       <SaveSettingsSuccess />
+      <Ntrip />
     </v-content>
     <v-footer color="primary lighten-1" dark>
       <v-row justify="center">
@@ -29,6 +30,7 @@ import Machine from "@/components/settings/Machine.vue";
 import TargetPoint from "@/components/settings/TargetPoint.vue";
 import Steering from "@/components/settings/Steering.vue";
 import SaveSettingsSuccess from '@/components/settings/SaveSettingsSuccess.vue';
+import Ntrip from '@/components/settings/Ntrip.vue';
 export default {
   name: "settings",
   components: {
@@ -36,12 +38,11 @@ export default {
     Machine,
     TargetPoint,
     Steering,
-    SaveSettingsSuccess
+    SaveSettingsSuccess,
+    Ntrip
   }
 };
 </script>
 
 <style lang="scss" scoped>
 </style>
-
-
