@@ -40,6 +40,13 @@
     "targetPoint": {
       "timeAheadSeconds": 1.5,
       "minimumDistance": 0.33
+    },
+    "ntrip": {
+      "host": "flepos.vlaanderen.be",
+      "username": "_HIDDEN-NTRIP-CREDENTIALS_",
+      "password": "_HIDDEN-NTRIP-CREDENTIALS_",
+      "mountpoint": "FLEPOSVRS32GREC",
+      "port": "2101"
     }
   }
 }
