@@ -8,6 +8,7 @@
     </v-app-bar>
     <v-content class="px-8">
       <div class="d-flex flex-wrap">
+        <Raspberry/>
         <AngleSensor />
         <Machine />
       </div>
@@ -15,6 +16,7 @@
       <Steering />
       <SaveSettingsSuccess />
       <Ntrip />
+      
     </v-content>
     <v-footer color="primary lighten-1" dark>
       <v-row justify="center">
@@ -31,6 +33,7 @@ import TargetPoint from "@/components/settings/TargetPoint.vue";
 import Steering from "@/components/settings/Steering.vue";
 import SaveSettingsSuccess from '@/components/settings/SaveSettingsSuccess.vue';
 import Ntrip from '@/components/settings/Ntrip.vue';
+import Raspberry from '@/components/settings/Raspberry.vue';
 export default {
   name: "settings",
   components: {
@@ -39,7 +42,8 @@ export default {
     TargetPoint,
     Steering,
     SaveSettingsSuccess,
-    Ntrip
+    Ntrip,
+    Raspberry
   }
 };
 </script>
