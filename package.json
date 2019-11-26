@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "madge": "madge app.js -i test.png"
+    "madge": "madge app.js -i madgeVisualization.png"
   },
   "author": "",
   "license": "ISC",
