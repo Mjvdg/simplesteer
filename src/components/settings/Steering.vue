@@ -86,7 +86,7 @@ export default {
       toleranceDegrees: undefined,
       motorPwm: undefined,
       minimumMotorPwm: undefined,
-      pidRules: [v => !!v || "is required", v => v >= 0 || "must be >= 0"],
+      pidRules: [v => v!=='' || "is required", v => v >= 0 || "must be >= 0"],
       pid: {
         p: undefined,
         d: undefined
