@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <v-app>
     <div class="flexContainer">
       <AutoButton />
       <SteeringButtons />
@@ -21,6 +22,7 @@
     <CrossTrackDistanceGraph />
     <SteeringGraph />
     <DataGrid />
+    </v-app>
   </div>
 </template>
 

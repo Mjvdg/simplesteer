@@ -7,6 +7,7 @@ import io from 'socket.io-client'
 import BaseConnectionStatus from '@/components/BaseConnectionStatus.vue';
 import VueCookie from 'vue-cookie';
 import vuetify from './plugins/vuetify';
+import 'typeface-roboto/index.css';
 //import SVG from '@svgdotjs/svg.js'
 Vue.config.productionTip = false
 Vue.component('BaseConnectionStatus', BaseConnectionStatus);
