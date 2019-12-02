@@ -7,7 +7,7 @@
         </v-list-item-icon>
         <v-list-item-content>
           <v-list-item-title class="headline">Ntrip</v-list-item-title>
-          <v-list-item-subtitle>Ntrip settings</v-list-item-subtitle>
+          <v-list-item-subtitle>Credentials for gps correction data</v-list-item-subtitle>
         </v-list-item-content>
       </v-list-item>
     </v-card-title>
