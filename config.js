@@ -12,4 +12,5 @@ module.exports = {
     path: '/dev/ttyACM1'
   },
   debug: true,
+  simulator: true,
 }
