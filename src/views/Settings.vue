@@ -9,6 +9,7 @@
     <v-content class="px-8">
       <div class="d-flex flex-wrap">
         <Raspberry/>
+        <Mode />
         <AngleSensor />
         <Machine />
       </div>
@@ -34,6 +35,7 @@ import Steering from "@/components/settings/Steering.vue";
 import SaveSettingsSuccess from '@/components/settings/SaveSettingsSuccess.vue';
 import Ntrip from '@/components/settings/Ntrip.vue';
 import Raspberry from '@/components/settings/Raspberry.vue';
+import Mode from '@/components/settings/Mode.vue';
 export default {
   name: "settings",
   components: {
@@ -43,7 +45,8 @@ export default {
     Steering,
     SaveSettingsSuccess,
     Ntrip,
-    Raspberry
+    Raspberry,
+    Mode
   }
 };
 </script>

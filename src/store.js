@@ -101,12 +101,25 @@ const moduleControls = {
   getters: {},
 }
 
+const moduleSettings = {
+  state: {
+    mode: 'straightABlines'
+  },
+  mutations: {
+    changeMode(mode){
+      this.state.mode = mode;
+      this.$socket.client.emit('modeChanged', mode);
+    }
+  }
+}
+
 export default new Vuex.Store({
   strict: false, //disable for production!
   modules:{
     controls: moduleControls,
     connection: moduleConnection,
     info: moduleInfo,
+    settings: moduleSettings
   }
 })
 

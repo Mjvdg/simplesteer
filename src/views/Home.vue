@@ -3,21 +3,20 @@
     <v-app>
     <div class="flexContainer">
       <AutoButton />
-      <SteeringButtons />
       <ABButtons />
       <MachineWidth />  
       <LineOffset />
     </div>
     <div class="flexContainer">
       <div>
-        <GPSinfo v-bind:gps-info="$store.state.info.left" />
+        <GPSinfo @click.native="test" v-bind:gps-info="$store.state.info.left" />
         <GPSinfo v-bind:gps-info="$store.state.info.right" />  
       </div>
-      <img src="../assets/open-icon.png" width="25"/>
-      <img src="../assets/save-icon.png" width="25"/>
+      <router-link to="/OpenField"><img src="../assets/open-icon.png" width="25"/></router-link>
+      <img @click="saveField" src="../assets/save-icon.png" width="25"/>
       <router-link to="/Settings"><img src="../assets/settings.png" width="25" height="25"/></router-link>
     </div>
-    <Map5 />
+    <Map5/>
     
     <CrossTrackDistanceGraph />
     <SteeringGraph />
@@ -29,7 +28,6 @@
 <script>
 // import HelloWorld from './components/HelloWorld.vue'
 // @ is an alias to /src
-import SteeringButtons from "@/components/SteeringButtons.vue"
 import AutoButton from "@/components/autoButton.vue"
 import ABButtons from "@/components/ABButtons.vue"
 import MachineWidth from "@/components/MachineWidth.vue"
@@ -43,7 +41,6 @@ import SteeringGraph from '@/components/SteeringGraph.vue'
 export default {
   name: 'home',
   components: {
-    SteeringButtons,
     AutoButton,
     ABButtons,
     MachineWidth,
@@ -60,7 +57,12 @@ export default {
     }
   },
   methods: {
-
+    saveField(){
+      
+    },
+    test(){
+      console.log('test');
+    }
   }
 }
 </script>
