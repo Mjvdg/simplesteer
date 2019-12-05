@@ -48,6 +48,6 @@
       "mountpoint": "FLEPOSVRS32GREC",
       "port": "2101"
     },
-    "mode": "straightABlines"
+    "mode": "curvedABlines"
   }
 }
