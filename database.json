@@ -15,7 +15,7 @@
   ],
   "settings": {
     "machineWidth": 400,
-    "lineOffset": 0.01,
+    "lineOffset": 0,
     "machine": {
       "antennaHeight": 2.66,
       "antennaToFrontAxleDistance": 1.01,
@@ -47,6 +47,7 @@
       "password": "_HIDDEN-NTRIP-CREDENTIALS_",
       "mountpoint": "FLEPOSVRS32GREC",
       "port": "2101"
-    }
+    },
+    "mode": "straightABlines"
   }
 }
