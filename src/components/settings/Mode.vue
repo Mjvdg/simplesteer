@@ -1,5 +1,5 @@
 <template>
-  <v-card class="my-7 mx-auto">
+  <v-card class="my-2 mx-auto">
     <v-card-title>
       <v-list-item>
         <v-list-item-icon>
@@ -11,7 +11,7 @@
       </v-list-item>
     </v-card-title>
     <v-card-text>
-      <v-radio-group @change="sendModeChanged" v-model="mode" :mandatory="false">
+      <v-radio-group v-model="mode">
         <v-radio label="Straight AB lines" value="straightABlines"></v-radio>
         <v-radio label="Curved AB lines" value="curvedABlines"></v-radio>
       </v-radio-group>
@@ -23,14 +23,20 @@
 export default {
   data() {
     return {
-      mode: 'straightABlines'
+  
     };
   },
-  methods: {
-    sendModeChanged() {
-      this.$store.commit('changeMode', this.mode);
+  computed: {
+    mode: {
+      get(){
+        return this.$store.state.settings.mode;
+      },
+      set(value){
+        this.$socket.client.emit('modeChanged', value);
+        this.$store.commit('changeMode', value);
+      }
     }
-  },
+  }
 };
 </script>
 

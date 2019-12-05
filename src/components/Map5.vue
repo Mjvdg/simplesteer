@@ -18,7 +18,6 @@ export default {
       previousPointBMarker: undefined,
       previousTargetPointMarker: undefined,
       previousWheelPositionMarker: undefined,
-      abLineBearing: undefined,
       accessToken:
         "REPLACE_WITH_MAPBOX_ACCESSTOKEN",
       mapStyle: `mapbox://styles/mapbox/satellite-v9`,
@@ -95,9 +94,7 @@ export default {
         .addTo(this.map);
     },
     setTargetPointMarker(location) {
-      if (this.previousTargetPointMarker) {
-        this.previousTargetPointMarker.remove();
-      }
+      this.removeTargetPointMarkerIfExist();
       let el = document.createElement("div");
       el.className = "mdi mdi-target targetPointMarker";
 
@@ -128,9 +125,7 @@ export default {
         .addTo(this.map);
     },
     setPointAMarker(location) {
-      if (this.previousPointAMarker) {
-        this.previousPointAMarker.remove();
-      }
+      this.removePointAMarkerIfExist();
       this.previousPointAMarker = new mapboxgl.Marker({
         color: "#FFA500"
       })
@@ -143,9 +138,7 @@ export default {
         .addTo(this.map);
     },
     setPointBMarker(location) {
-      if (this.previousPointBMarker) {
-        this.previousPointBMarker.remove();
-      }
+      this.removePointBMarkerIfExist();
       this.previousPointBMarker = new mapboxgl.Marker({
         color: "#005AFF"
       })
@@ -208,24 +201,60 @@ export default {
         }
       });
     },
+    drawCurvedLine(id, line) {
+      this.removeLineIfExist(id);
+      this.map.addLayer({
+        id: id,
+        type: "line",
+        source: {
+          type: "geojson",
+          data: {
+            type: "Feature",
+            properties: {},
+            geometry: {
+              type: "LineString",
+              coordinates: line
+            }
+          }
+        },
+        paint: {
+          "line-color": "#f00",
+          "line-width": 2
+        }
+      });
+    },
     extend(point, bearing) {
       let p = turf.point(point);
       let options = { units: "kilometers" };
       let extended = turf.rhumbDestination(p, 1, bearing, options);
       return extended.geometry.coordinates;
+    },
+    removePointAMarkerIfExist() {
+      if (this.previousPointAMarker) {
+        this.previousPointAMarker.remove();
+      }
+    },
+    removePointBMarkerIfExist() {
+      if (this.previousPointBMarker) {
+        this.previousPointBMarker.remove();
+      }
+    },
+    removeTargetPointMarkerIfExist() {
+      if (this.previousTargetPointMarker) {
+        this.previousTargetPointMarker.remove();
+      }
     }
   },
   sockets: {
     map_lines(lines) {
       this.drawLine("closestLine", lines.closestLine, 2);
       lines.others.forEach((line, index) => {
-        this.drawLine(`line${index}`, line, 1);
+        this.drawLine(`straightLine${index}`, line, 1);
       });
     },
-    map_ABpoints({ pointA, pointB, abLineBearing }) {
+    map_ABpoints({ pointA, pointB }) {
       this.setPointAMarker(pointA);
       this.setPointBMarker(pointB);
-      this.abLineBearing = abLineBearing;
     },
     current_location({
       currentLocation,
@@ -248,6 +277,24 @@ export default {
     targetPointLocation({ targetPointLocation, wheelPosition }) {
       this.setTargetPointMarker(targetPointLocation);
       this.setWheelPositionMarker(wheelPosition);
+    },
+    curvedAbLine(curvedAbLine) {
+      this.drawCurvedLine("curvedLine", curvedAbLine);
+    },
+    clearMap() {
+      this.removeLineIfExist("straightLine0");
+      this.removeLineIfExist("straightLine1");
+      this.removeLineIfExist("closestLine");
+      this.removeLineIfExist("straightLine0extA");
+      this.removeLineIfExist("straightLine1extA");
+      this.removeLineIfExist("closestLineextA");
+      this.removeLineIfExist("straightLine0extB");
+      this.removeLineIfExist("straightLine1extB");
+      this.removeLineIfExist("closestLineextB");
+      this.removeLineIfExist("curvedLine");
+      this.removeTargetPointMarkerIfExist();
+      this.removePointAMarkerIfExist();
+      this.removePointBMarkerIfExist();
     }
   }
 };
@@ -268,14 +315,12 @@ export default {
     color: white;
     vertical-align: middle;
     text-shadow: 0px 0px 3px #000000;
-
   }
   .wheelPositionMarker {
     font-size: 10px;
     color: white;
     vertical-align: middle;
     text-shadow: 0px 0px 3px #000000;
-    
   }
   .rightGpsMarker,
   .leftGpsMarker {
@@ -290,7 +335,6 @@ export default {
     text-shadow: 0px 0px 6px #000000;
     opacity: 0.9;
   }
-
 }
 </style>
 

@@ -12,7 +12,7 @@ export default {
   name: 'autoButton',
   data: function() {
     return{
-      isAutoEnabled: false,
+      //isAutoEnabled: false,
     }    
   },
   methods:{

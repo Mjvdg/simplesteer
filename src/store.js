@@ -106,9 +106,11 @@ const moduleSettings = {
     mode: 'straightABlines'
   },
   mutations: {
-    changeMode(mode){
-      this.state.mode = mode;
-      this.$socket.client.emit('modeChanged', mode);
+    changeMode(state, mode){
+      state.mode = mode;
+    },
+    SOCKET_MODE: (state, data) => {
+      state.mode = data;
     }
   }
 }

@@ -3,7 +3,8 @@
     <v-app>
     <div class="flexContainer">
       <AutoButton />
-      <ABButtons />
+      <ABButtons v-if="$store.state.settings.mode==='straightABlines'" />
+      <CurvedRecordButton v-if="$store.state.settings.mode==='curvedABlines'" />
       <MachineWidth />  
       <LineOffset />
     </div>
@@ -12,9 +13,9 @@
         <GPSinfo @click.native="test" v-bind:gps-info="$store.state.info.left" />
         <GPSinfo v-bind:gps-info="$store.state.info.right" />  
       </div>
-      <router-link to="/OpenField"><img src="../assets/open-icon.png" width="25"/></router-link>
-      <img @click="saveField" src="../assets/save-icon.png" width="25"/>
-      <router-link to="/Settings"><img src="../assets/settings.png" width="25" height="25"/></router-link>
+      <v-btn to="/OpenField" icon><v-icon x-large color='black'>mdi-folder-open</v-icon></v-btn>
+      <v-btn icon><v-icon color='black' x-large>mdi-content-save</v-icon></v-btn>
+      <v-btn to="/Settings" icon><v-icon color='black' x-large>mdi-tools</v-icon></v-btn>
     </div>
     <Map5/>
     
@@ -37,6 +38,7 @@ import Map5 from "@/components/Map5.vue"
 import DataGrid from '@/components/DataGrid.vue'
 import CrossTrackDistanceGraph from '@/components/CrossTrackDistanceGraph.vue'
 import SteeringGraph from '@/components/SteeringGraph.vue'
+import CurvedRecordButton from '@/components/CurvedRecordButton.vue';
 
 export default {
   name: 'home',
@@ -49,19 +51,12 @@ export default {
     Map5,
     DataGrid,
     CrossTrackDistanceGraph,
-    SteeringGraph
+    SteeringGraph,
+    CurvedRecordButton
   },
   computed:{
     count() {
       return this.$store.state.count;
-    }
-  },
-  methods: {
-    saveField(){
-      
-    },
-    test(){
-      console.log('test');
     }
   }
 }
@@ -71,7 +66,7 @@ export default {
   // @import '/src/assets/css/normalize.css';
 
   a{
-    margin-bottom:0px !important; 
+    //margin-bottom:0px !important; 
   }
   .flexContainer{
     display: flex;
