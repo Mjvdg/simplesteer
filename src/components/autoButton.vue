@@ -3,7 +3,7 @@
     class="btnAuto" 
     v-bind:class="{active: $store.state.controls.autoSteer }"
     @click="toggleAuto"
-    :disabled="!($store.state.controls.A && $store.state.controls.B)"
+    :disabled="!isAutosteerAllowed"
   >Auto</button>
 </template>
 
@@ -12,13 +12,18 @@ export default {
   name: 'autoButton',
   data: function() {
     return{
-      //isAutoEnabled: false,
+      isAutosteerAllowed: false,
     }    
   },
   methods:{
     toggleAuto(){
       this.$store.commit('toggleAutosteer');
       this.$socket.client.emit('isAutosteerEnabled', this.$store.state.controls.autoSteer);
+    }
+  },
+  sockets: {
+    isAutosteerAllowed(isAutosteerAllowed){
+      this.isAutosteerAllowed = isAutosteerAllowed;
     }
   }
 }

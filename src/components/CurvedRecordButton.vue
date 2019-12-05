@@ -15,6 +15,7 @@ export default {
   methods: {
     toggle() {
       this.isRecording = !this.isRecording;
+      this.$socket.client.emit('curvedIsRecording', this.isRecording);
     }
   }
 };
