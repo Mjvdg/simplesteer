@@ -68,11 +68,6 @@ export default {
         }
       };
     },
-    prepareLineFromServer(line) {
-      return (
-        [line.A.longitude, line.A.latitude], [line.B.longitude, line.B.latitude]
-      );
-    },
     setLeftGpsMarker(location) {
       if (this.previousLeftGpsMarker) {
         this.previousLeftGpsMarker.remove();
@@ -262,8 +257,12 @@ export default {
       this.drawCurvedLine("currentRecordedCurvedAbLine", curvedAbLine, 2);
     }, 
     map_ABpoints({ pointA, pointB }) {
-      this.setPointAMarker(pointA);
-      this.setPointBMarker(pointB);
+      if(pointA.length > 0){
+        this.setPointAMarker(pointA);
+      }
+      if(pointB.length > 0){
+        this.setPointBMarker(pointB);
+      }
     },
     current_location({
       currentLocation,
@@ -271,18 +270,16 @@ export default {
       rightLocation,
       driveBearing
     }) {
-      let currentLocationLonLat = [
-        currentLocation.longitude,
-        currentLocation.latitude
-      ];
-      this.map.setCenter(currentLocationLonLat);
-      this.setCurrentLocationMaker(currentLocationLonLat);
-      this.setLeftGpsMarker([leftLocation.longitude, leftLocation.latitude]);
-      this.setRightGpsMarker([rightLocation.longitude, rightLocation.latitude]);
+      this.map.setCenter(currentLocation);
+      this.setCurrentLocationMaker(currentLocation);
+      this.setLeftGpsMarker(leftLocation);
+      this.setRightGpsMarker(rightLocation);
       this.map.setBearing(driveBearing);
     },
-    targetPointLocation({ targetPointLocation, wheelPosition }) {
+    targetPointLocation(targetPointLocation) {
       this.setTargetPointMarker(targetPointLocation);
+    },
+    wheelPosition(wheelPosition){
       this.setWheelPositionMarker(wheelPosition);
     },
     clearMap() {

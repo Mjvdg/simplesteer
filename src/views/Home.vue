@@ -64,10 +64,6 @@ export default {
 
 <style lang="scss" scoped>
   // @import '/src/assets/css/normalize.css';
-
-  a{
-    //margin-bottom:0px !important; 
-  }
   .flexContainer{
     display: flex;
     flex-wrap: wrap;
