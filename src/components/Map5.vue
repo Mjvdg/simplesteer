@@ -201,7 +201,7 @@ export default {
         }
       });
     },
-    drawCurvedLine(id, line) {
+    drawCurvedLine(id, line, size) {
       this.removeLineIfExist(id);
       this.map.addLayer({
         id: id,
@@ -219,7 +219,7 @@ export default {
         },
         paint: {
           "line-color": "#f00",
-          "line-width": 2
+          "line-width": size
         }
       });
     },
@@ -252,6 +252,15 @@ export default {
         this.drawLine(`straightLine${index}`, line, 1);
       });
     },
+    mapCurvedLines(lines){
+      this.drawCurvedLine("closestCurveLine", lines.closestLine, 2);
+      lines.others.forEach((line, index) => {
+        this.drawCurvedLine(`curvedLine${index}`, line, 1);
+      });
+    },
+    currentRecordedCurvedAbLine(curvedAbLine) {
+      this.drawCurvedLine("currentRecordedCurvedAbLine", curvedAbLine, 2);
+    }, 
     map_ABpoints({ pointA, pointB }) {
       this.setPointAMarker(pointA);
       this.setPointBMarker(pointB);
@@ -267,19 +276,14 @@ export default {
         currentLocation.latitude
       ];
       this.map.setCenter(currentLocationLonLat);
-
       this.setCurrentLocationMaker(currentLocationLonLat);
       this.setLeftGpsMarker([leftLocation.longitude, leftLocation.latitude]);
       this.setRightGpsMarker([rightLocation.longitude, rightLocation.latitude]);
-
       this.map.setBearing(driveBearing);
     },
     targetPointLocation({ targetPointLocation, wheelPosition }) {
       this.setTargetPointMarker(targetPointLocation);
       this.setWheelPositionMarker(wheelPosition);
-    },
-    curvedAbLine(curvedAbLine) {
-      this.drawCurvedLine("curvedLine", curvedAbLine);
     },
     clearMap() {
       this.removeLineIfExist("straightLine0");
@@ -291,10 +295,13 @@ export default {
       this.removeLineIfExist("straightLine0extB");
       this.removeLineIfExist("straightLine1extB");
       this.removeLineIfExist("closestLineextB");
-      this.removeLineIfExist("curvedLine");
+      this.removeLineIfExist("currentRecordedCurvedAbLine");
       this.removeTargetPointMarkerIfExist();
       this.removePointAMarkerIfExist();
       this.removePointBMarkerIfExist();
+      this.removeLineIfExist('closestCurveLine');
+      this.removeLineIfExist('curvedLine0');
+      this.removeLineIfExist('curvedLine1');
     }
   }
 };

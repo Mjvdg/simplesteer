@@ -17,6 +17,11 @@ export default {
       this.isRecording = !this.isRecording;
       this.$socket.client.emit('curvedIsRecording', this.isRecording);
     }
+  },
+  sockets: {
+    isRecordingStatus(isRecording){
+      this.isRecording = isRecording;
+    }
   }
 };
 </script>
