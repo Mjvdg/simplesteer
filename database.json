@@ -14,7 +14,7 @@
     }
   ],
   "settings": {
-    "machineWidth": 400,
+    "machineWidth": 300,
     "lineOffset": 0,
     "machine": {
       "antennaHeight": 2.66,
@@ -48,6 +48,6 @@
       "mountpoint": "FLEPOSVRS32GREC",
       "port": "2101"
     },
-    "mode": "curvedABlines"
+    "mode": "straightABlines"
   }
 }
