@@ -38,6 +38,7 @@
       </v-form>
     </v-card-text>
     <v-card-actions>
+       <v-spacer></v-spacer>
       <v-btn
         :disabled="!valid"
         @click="save"

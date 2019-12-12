@@ -13,8 +13,8 @@
         <GPSinfo @click.native="test" v-bind:gps-info="$store.state.info.left" />
         <GPSinfo v-bind:gps-info="$store.state.info.right" />  
       </div>
-      <v-btn to="/OpenField" icon><v-icon x-large color='black'>mdi-folder-open</v-icon></v-btn>
-      <v-btn icon><v-icon color='black' x-large>mdi-content-save</v-icon></v-btn>
+      <Open />
+      <Save />
       <v-btn to="/Settings" icon><v-icon color='black' x-large>mdi-tools</v-icon></v-btn>
     </div>
     <Map5/>
@@ -39,6 +39,8 @@ import DataGrid from '@/components/DataGrid.vue'
 import CrossTrackDistanceGraph from '@/components/CrossTrackDistanceGraph.vue'
 import SteeringGraph from '@/components/SteeringGraph.vue'
 import CurvedRecordButton from '@/components/CurvedRecordButton.vue';
+import Save from '@/components/Save.vue';
+import Open from '@/components/Open.vue';
 
 export default {
   name: 'home',
@@ -52,12 +54,9 @@ export default {
     DataGrid,
     CrossTrackDistanceGraph,
     SteeringGraph,
-    CurvedRecordButton
-  },
-  computed:{
-    count() {
-      return this.$store.state.count;
-    }
+    CurvedRecordButton,
+    Save,
+    Open
   }
 }
 </script>

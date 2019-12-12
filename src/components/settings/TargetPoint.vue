@@ -22,8 +22,13 @@
         <v-icon slot="prepend" v-ripple @click="minimumDistance-=1">mdi-flash</v-icon>
         <v-icon slot="append" v-ripple @click="minimumDistance+=1">mdi-turtle</v-icon>
       </v-slider>
-      <v-btn @click="save" x-large :color="'primary'">Save</v-btn>
+      
     </v-card-text>
+    <v-card-actions>
+      <v-spacer></v-spacer>
+      <v-btn @click="save" x-large :color="'primary'">Save</v-btn>
+    </v-card-actions>
+    
   </v-card>
 </template>
 

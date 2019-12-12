@@ -28,6 +28,7 @@
       </v-form>
     </v-card-text>
     <v-card-actions>
+      <v-spacer></v-spacer>
       <v-btn @click="save" x-large :color="'primary'">Save</v-btn>
     </v-card-actions>
   </v-card>

@@ -37,6 +37,7 @@ export default {
       this.update(received);
     },
     crossTrackDistanceHistory(data) {
+      this.clearGraph();
       data.forEach(crosstrackDistance => {
         this.addToDataGraph(crosstrackDistance);
       });

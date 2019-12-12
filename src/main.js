@@ -11,7 +11,7 @@ import 'typeface-roboto/index.css';
 //import SVG from '@svgdotjs/svg.js'
 Vue.config.productionTip = false
 Vue.component('BaseConnectionStatus', BaseConnectionStatus);
-Vue.prototype.$io = io(window.location.protocol + '//' + window.location.hostname + ':3000/', {transports: ['websocket']});
+Vue.prototype.$io = io(window.location.protocol + '//' + window.location.hostname + ':3000/', {transports: ['websocket'], reconnectionDelayMax: 1000});
 
 Vue.use(  
   VueSocketIOExt,

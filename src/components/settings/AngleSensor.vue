@@ -26,18 +26,6 @@
         </table>
         <v-container>
           <v-row v-for="(setting, name) in settings" v-bind:key="name">
-            <v-col cols="auto">
-              <v-btn
-                x-large
-                @mousedown="setting.averaging=true"
-                @touchstart="setting.averaging=true"
-                @mouseup="setting.averaging=false"
-                @touchend="setting.averaging=false"
-                @touchend.prevent
-              >
-                <v-icon>mdi-arrow-collapse-all</v-icon>
-              </v-btn>
-            </v-col>
             <v-col>
               <v-text-field
                 :prepend-inner-icon="setting.icon"
@@ -50,17 +38,25 @@
                 v-model.number="setting.value"
               />
             </v-col>
+            <v-col cols="auto">
+              <v-btn
+                x-large
+                @mousedown="setting.averaging=true"
+                @touchstart="setting.averaging=true"
+                @mouseup="setting.averaging=false"
+                @touchend="setting.averaging=false"
+                @touchend.prevent
+              >
+                <v-icon>mdi-arrow-collapse-all</v-icon>
+              </v-btn>
+            </v-col>
           </v-row>
         </v-container>
       </v-form>
     </v-card-text>
     <v-card-actions>
-      <v-btn
-        :disabled="!valid"
-        @click="save"
-        x-large
-        color="primary"
-      >Save</v-btn>
+      <v-spacer></v-spacer>
+      <v-btn :disabled="!valid" @click="save" x-large color="primary">Save</v-btn>
     </v-card-actions>
   </v-card>
 </template>

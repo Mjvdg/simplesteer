@@ -52,6 +52,7 @@ export default {
       });
     },
     steeringHistory({steeringHistorys, targetHistorys}){
+      this.clearGraph();
       steeringHistorys.forEach(data => {
         this.addSteeringAngleToGraph(data);
       });
