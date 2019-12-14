@@ -24,10 +24,11 @@
           v-model.number="antennaToFrontAxleDistance"
           type="number"
           label="antenna to front axle(cm)"
-          hint="Distance between front axle and antenna's"
+          hint="horizontal distance between front axle and antenna's"
           :rules="txtMachineRules"
           outlined
         />
+
         <v-text-field
           v-model.number="maxSteeringAngle"
           type="number"
@@ -36,15 +37,19 @@
           outlined
         />
       </v-form>
+      <v-switch v-model="isReverseSteeringEnabled" label="Reverse steering" />
+      <v-text-field
+        v-model.number="antennaToRearAxleDistance"
+        :disabled="!isReverseSteeringEnabled"
+        type="number"
+        label="antenna to rear axle(cm)"
+        hint="horizontal distance between rear axle and antenna's"
+        outlined
+      />
     </v-card-text>
     <v-card-actions>
-       <v-spacer></v-spacer>
-      <v-btn
-        :disabled="!valid"
-        @click="save"
-        x-large
-        color="primary"
-      >Save</v-btn>
+      <v-spacer></v-spacer>
+      <v-btn :disabled="!valid" @click="save" x-large color="primary">Save</v-btn>
     </v-card-actions>
   </v-card>
 </template>
@@ -61,14 +66,17 @@ export default {
       ],
       antennaHeight: undefined,
       antennaToFrontAxleDistance: undefined,
-      maxSteeringAngle: undefined
+      antennaToRearAxleDistance: undefined,
+      maxSteeringAngle: undefined,
+      isReverseSteeringEnabled: false,
     };
   },
   methods: {
     save() {
       this.$io.emit("saveMachineSettings", {
-        antennaHeight: this.antennaHeight/100,
-        antennaToFrontAxleDistance: this.antennaToFrontAxleDistance /100,
+        antennaHeight: this.antennaHeight / 100,
+        antennaToFrontAxleDistance: this.antennaToFrontAxleDistance / 100,
+        antennaToRearAxleDistance: this.antennaToRearAxleDistance / 100,
         maxSteeringAngle: this.maxSteeringAngle
       });
     }
@@ -80,11 +88,13 @@ export default {
     machineSettings({
       antennaHeight,
       antennaToFrontAxleDistance,
+      antennaToRearAxleDistance,
       maxSteeringAngle
     }) {
-      this.antennaHeight = antennaHeight*100;
-      this.antennaToFrontAxleDistance = antennaToFrontAxleDistance *100;
-      this.maxSteeringAngle = maxSteeringAngle;
+      this.antennaHeight = antennaHeight * 100;
+      this.antennaToFrontAxleDistance = antennaToFrontAxleDistance * 100;
+      (this.antennaToRearAxleDistance = antennaToRearAxleDistance * 100),
+        (this.maxSteeringAngle = maxSteeringAngle);
     }
   }
 };

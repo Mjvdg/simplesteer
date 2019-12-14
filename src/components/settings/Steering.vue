@@ -12,7 +12,7 @@
       </v-list-item>
     </v-card-title>
     <v-card-text>
-       <v-divider></v-divider>
+      <v-divider></v-divider>
       <v-subheader class="pl-0">Tolerance: {{toleranceDegrees}}°</v-subheader>
       <v-slider v-model="toleranceDegrees" min="0" max="5" step="0.1">
         <v-icon slot="prepend" @click="toleranceDegrees-=0.1">mdi-flash</v-icon>
@@ -24,10 +24,41 @@
         <v-radio label="Motor on wheel" value="motorOnWheel"></v-radio>
       </v-radio-group>
       <v-divider></v-divider>
-      <v-radio-group label="Mode" v-model="mode">
-        <v-radio label="simple" value="simple"></v-radio>
-        <v-radio label="PID" value="pid"></v-radio>
-      </v-radio-group>
+      <div v-if="method === 'hydraulic'">
+        <v-divider></v-divider>
+        <v-subheader class="pl-0">Minimum pulse duration: {{minimumPulseDuration}}</v-subheader>
+        <v-slider
+          hint="minimum time of a steering pulse"
+          min="0"
+          max="255"
+          v-model="minimumPulseDuration"
+        >
+          <v-icon slot="prepend" @click="minimumPulseDuration-=1">mdi-turtle</v-icon>
+          <v-icon slot="append" @click="minimumPulseDuration+=1">mdi-flash</v-icon>
+        </v-slider>
+
+        <div class="d-flex justify-space-around">
+          <v-btn
+            x-large
+            :disabled="$store.state.controls.autoSteer"
+            icon
+            @click="turnLeftMinimumPulseDuration"
+          >
+            <v-icon>mdi-chevron-left</v-icon>
+          </v-btn>
+          <v-btn
+            x-large
+            :disabled="$store.state.controls.autoSteer"
+            icon
+            @click="turnRightMinimumPulseDuration"
+          >
+            <v-icon>mdi-chevron-right</v-icon>
+          </v-btn>
+        </div>
+
+        <v-divider></v-divider>
+      </div>
+
       <div v-if="method === 'motorOnWheel'">
         <v-divider></v-divider>
         <v-subheader class="pl-0">Minimum motor pwm: {{minimumMotorPwm}}</v-subheader>
@@ -68,7 +99,7 @@
 
         <v-divider></v-divider>
       </div>
-      <div v-if="mode === 'pid'">
+
         <v-subheader class="pl-0">PID settings</v-subheader>
         <v-form v-model="valid" class="d-flex">
           <v-text-field
@@ -90,8 +121,8 @@
             type="number"
           />
         </v-form>
-         <v-divider></v-divider>
-      </div>
+        <v-divider></v-divider>
+  
     </v-card-text>
     <v-card-actions>
       <v-spacer></v-spacer>
@@ -107,10 +138,10 @@ export default {
     return {
       valid: true,
       method: "hydraulic",
-      mode: "simple",
       toleranceDegrees: undefined,
       motorPwm: undefined,
       minimumMotorPwm: undefined,
+      minimumPulseDuration: undefined,
       pidRules: [v => v !== "" || "is required", v => v >= 0 || "must be >= 0"],
       pid: {
         p: undefined,
@@ -125,10 +156,10 @@ export default {
     save() {
       this.$socket.client.emit("saveSteeringSettings", {
         method: this.method,
-        mode: this.mode,
         pid: this.pid,
         toleranceDegrees: this.toleranceDegrees,
-        minimumMotorPwm: this.minimumMotorPwm
+        minimumMotorPwm: this.minimumMotorPwm,
+        minimumPulseDuration: this.minimumPulseDuration
       });
     },
     turnLeftMinimumPwm() {
@@ -139,15 +170,27 @@ export default {
     },
     stopTurning() {
       this.$socket.client.emit("turnStop");
+    },
+    turnLeftMinimumPulseDuration() {
+      this.$socket.client.emit(
+        "turnLeftMinimumPulseDuration",
+        this.minimumPulseDuration
+      );
+    },
+    turnRightMinimumPulseDuration() {
+      this.$socket.client.emit(
+        "turnRightMinimumPulseDuration",
+        this.minimumPulseDuration
+      );
     }
   },
   sockets: {
-    steeringSettings({ method, mode, pid, toleranceDegrees, minimumMotorPwm }) {
+    steeringSettings({ method, pid, toleranceDegrees, minimumMotorPwm, minimumPulseDuration }) {
       this.method = method;
-      this.mode = mode;
       this.pid = pid;
       this.toleranceDegrees = toleranceDegrees;
       this.minimumMotorPwm = minimumMotorPwm;
+      this.minimumPulseDuration = minimumPulseDuration;
     }
   }
 };
