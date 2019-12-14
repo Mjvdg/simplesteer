@@ -19,18 +19,19 @@
     "machine": {
       "antennaHeight": 2.66,
       "antennaToFrontAxleDistance": 1.01,
+      "antennaToRearAxleDistance": 1,
       "maxSteeringAngle": 45
     },
     "steering": {
-      "method": "motorOnWheel",
-      "mode": "pid",
+      "method": "hydraulic",
       "pid": {
         "p": 1,
         "i": 0,
         "d": 0
       },
-      "toleranceDegrees": 0.3,
-      "minimumMotorPwm": 33
+      "toleranceDegrees": 0.1,
+      "minimumMotorPwm": 46,
+      "minimumPulseDuration": 18
     },
     "steeringAngleSensor": {
       "maxLeft": 10,
@@ -48,6 +49,6 @@
       "mountpoint": "FLEPOSVRS32GREC",
       "port": "2101"
     },
-    "mode": "curvedABlines"
+    "mode": "straightABlines"
   }
 }
