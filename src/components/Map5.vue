@@ -3,8 +3,10 @@
 </template>
 
 <script>
-let mapboxgl = require("mapbox-gl/dist/mapbox-gl.js");
-const turf = require("@turf/turf");
+//let mapboxgl = require("mapbox-gl/dist/mapbox-gl.js");
+import mapboxgl from "mapbox-gl";
+//const turf = require("@turf/turf");
+import * as turf from "@turf/turf";
 export default {
   name: "Map5",
   components: {},
@@ -18,6 +20,7 @@ export default {
       previousPointBMarker: undefined,
       previousTargetPointMarker: undefined,
       previousWheelPositionMarker: undefined,
+      fastRecordedWorkPointIds: [],
       accessToken:
         "REPLACE_WITH_MAPBOX_ACCESSTOKEN",
       mapStyle: `mapbox://styles/mapbox/satellite-v9`,
@@ -146,6 +149,12 @@ export default {
         this.map.removeSource(id);
       }
     },
+    removeIfWorkPolygonExist(id) {
+      if (this.map.getLayer(id)) {
+        this.map.removeLayer(id);
+        this.map.removeSource(id);
+      }
+    },
     drawLine(id, line, size) {
       this.removeLineIfExist(id);
       this.map.addLayer({
@@ -218,6 +227,28 @@ export default {
         }
       });
     },
+    drawWorkPolygon(id, coordinates) {
+      console.log(coordinates)
+      this.map.addLayer({
+        id: id,
+        type: "fill",
+        source: {
+          type: "geojson",
+          data: {
+            type: "Feature",
+            geometry: {
+              type: "MultiPolygon",
+              coordinates: coordinates
+            }
+          }
+        },
+        layout: {},
+        paint: {
+          "fill-color": "#088",
+          "fill-opacity": 0.5
+        }
+      });
+    },
     extend(point, bearing) {
       let p = turf.point(point);
       let options = { units: "kilometers" };
@@ -247,7 +278,7 @@ export default {
         this.drawLine(`straightLine${index}`, line, 1);
       });
     },
-    mapCurvedLines(lines){
+    mapCurvedLines(lines) {
       this.drawCurvedLine("closestCurveLine", lines.closestLine, 2);
       lines.others.forEach((line, index) => {
         this.drawCurvedLine(`curvedLine${index}`, line, 1);
@@ -255,12 +286,12 @@ export default {
     },
     currentRecordedCurvedAbLine(curvedAbLine) {
       this.drawCurvedLine("currentRecordedCurvedAbLine", curvedAbLine, 2);
-    }, 
+    },
     map_ABpoints({ pointA, pointB }) {
-      if(pointA.length > 0){
+      if (pointA.length > 0) {
         this.setPointAMarker(pointA);
       }
-      if(pointB.length > 0){
+      if (pointB.length > 0) {
         this.setPointBMarker(pointB);
       }
     },
@@ -279,7 +310,7 @@ export default {
     targetPointLocation(targetPointLocation) {
       this.setTargetPointMarker(targetPointLocation);
     },
-    wheelPosition(wheelPosition){
+    wheelPosition(wheelPosition) {
       this.setWheelPositionMarker(wheelPosition);
     },
     clearMap() {
@@ -296,12 +327,45 @@ export default {
       this.removeTargetPointMarkerIfExist();
       this.removePointAMarkerIfExist();
       this.removePointBMarkerIfExist();
-      this.removeLineIfExist('closestCurveLine');
-      this.removeLineIfExist('curvedLine0');
-      this.removeLineIfExist('curvedLine1');
+      this.removeLineIfExist("closestCurveLine");
+      this.removeLineIfExist("curvedLine0");
+      this.removeLineIfExist("curvedLine1");
+    },
+    fastRecordedPoints(points) {
+
+      let randomId = generateId();
+      this.drawWorkPolygon(randomId, [[points]]);
+      this.fastRecordedWorkPointIds.push(randomId);
+    },
+    bigRecordedWorkPoints(bigWorkPoints){
+      this.fastRecordedWorkPointIds.forEach(id => {
+        this.removeIfWorkPolygonExist(id);
+      });
+
+      let prepared = [];
+      bigWorkPoints.forEach(polygon => {
+        prepared.push([polygon]);
+      });
+      this.removeIfWorkPolygonExist('BigOne');
+      this.drawWorkPolygon('BigOne', prepared);
+
+
     }
   }
 };
+
+// const WorkDrawer = (() => {
+
+// })();
+
+function generateId(len) {
+  var arr = new Uint8Array((len || 40) / 2);
+  window.crypto.getRandomValues(arr);
+  return Array.from(arr, dec2hex).join("");
+  function dec2hex(dec) {
+    return ("0" + dec.toString(16)).substr(-2);
+  }
+}
 </script>
 
 <style lang="scss">

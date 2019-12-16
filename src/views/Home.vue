@@ -7,6 +7,7 @@
       <CurvedRecordButton v-if="$store.state.settings.mode==='curvedABlines'" />
       <MachineWidth />  
       <LineOffset />
+      <WorkRecordButton />
     </div>
     <div class="flexContainer">
       <div>
@@ -39,6 +40,7 @@ import DataGrid from '@/components/DataGrid.vue'
 import CrossTrackDistanceGraph from '@/components/CrossTrackDistanceGraph.vue'
 import SteeringGraph from '@/components/SteeringGraph.vue'
 import CurvedRecordButton from '@/components/CurvedRecordButton.vue';
+import WorkRecordButton from '@/components/WorkRecordButton.vue';
 import Save from '@/components/Save.vue';
 import Open from '@/components/Open.vue';
 
@@ -56,7 +58,8 @@ export default {
     SteeringGraph,
     CurvedRecordButton,
     Save,
-    Open
+    Open,
+    WorkRecordButton
   }
 }
 </script>
