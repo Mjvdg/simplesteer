@@ -48,7 +48,7 @@ export default {
       });
     },
     save(){
-      this.$socket.client.emit("saveLines", this.name);
+      this.$socket.client.emit("saveField", this.name);
       this.dialog = false;
     },
     getRandomName(){

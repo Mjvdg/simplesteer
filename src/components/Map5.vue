@@ -13,6 +13,7 @@ export default {
   data() {
     return {
       map: undefined,
+      isMapReady: false,
       previousLeftGpsMarker: undefined,
       previousRightGpsMarker: undefined,
       previousCurrentLocationMarker: undefined,
@@ -50,6 +51,7 @@ export default {
     });
     this.map.touchZoomRotate.disableRotation();
     this.map.on("load", () => {
+      this.isMapReady = true;
       this.$socket.client.emit("mapIsReady");
     });
     this.map.on("zoom", () => {
@@ -228,7 +230,9 @@ export default {
       });
     },
     drawWorkPolygon(id, coordinates) {
-      console.log(coordinates)
+      if(!this.isMapReady){
+        return;
+      }
       this.map.addLayer({
         id: id,
         type: "fill",
@@ -245,7 +249,7 @@ export default {
         layout: {},
         paint: {
           "fill-color": "#088",
-          "fill-opacity": 0.5
+          "fill-opacity": 0.3
         }
       });
     },
@@ -332,7 +336,6 @@ export default {
       this.removeLineIfExist("curvedLine1");
     },
     fastRecordedPoints(points) {
-
       let randomId = generateId();
       this.drawWorkPolygon(randomId, [[points]]);
       this.fastRecordedWorkPointIds.push(randomId);
@@ -342,21 +345,11 @@ export default {
         this.removeIfWorkPolygonExist(id);
       });
 
-      let prepared = [];
-      bigWorkPoints.forEach(polygon => {
-        prepared.push([polygon]);
-      });
       this.removeIfWorkPolygonExist('BigOne');
-      this.drawWorkPolygon('BigOne', prepared);
-
-
+      this.drawWorkPolygon('BigOne', bigWorkPoints);
     }
   }
 };
-
-// const WorkDrawer = (() => {
-
-// })();
 
 function generateId(len) {
   var arr = new Uint8Array((len || 40) / 2);

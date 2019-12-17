@@ -5,9 +5,9 @@
       <AutoButton />
       <ABButtons v-if="$store.state.settings.mode==='straightABlines'" />
       <CurvedRecordButton v-if="$store.state.settings.mode==='curvedABlines'" />
-      <MachineWidth />  
-      <LineOffset />
       <WorkRecordButton />
+      <MachineWidth />  
+      <LineOffset />      
     </div>
     <div class="flexContainer">
       <div>
