@@ -20,5 +20,7 @@
     "serialport": "^8.0.5",
     "socket.io": "^2.3.0"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "@types/lowdb": "^1.0.9"
+  }
 }
