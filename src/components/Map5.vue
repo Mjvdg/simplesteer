@@ -208,6 +208,9 @@ export default {
       });
     },
     drawCurvedLine(id, line, size) {
+      if (!this.isMapReady) {
+        return;
+      }
       this.removeLineIfExist(id);
       this.map.addLayer({
         id: id,
@@ -230,7 +233,7 @@ export default {
       });
     },
     drawWorkPolygon(id, coordinates) {
-      if(!this.isMapReady){
+      if (!this.isMapReady) {
         return;
       }
       this.map.addLayer({
@@ -340,13 +343,13 @@ export default {
       this.drawWorkPolygon(randomId, [[points]]);
       this.fastRecordedWorkPointIds.push(randomId);
     },
-    bigRecordedWorkPoints(bigWorkPoints){
+    bigRecordedWorkPoints(bigWorkPoints) {
       this.fastRecordedWorkPointIds.forEach(id => {
         this.removeIfWorkPolygonExist(id);
       });
 
-      this.removeIfWorkPolygonExist('BigOne');
-      this.drawWorkPolygon('BigOne', bigWorkPoints);
+      this.removeIfWorkPolygonExist("BigOne");
+      this.drawWorkPolygon("BigOne", bigWorkPoints);
     }
   }
 };

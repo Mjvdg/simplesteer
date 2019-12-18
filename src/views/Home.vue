@@ -11,7 +11,7 @@
     </div>
     <div class="flexContainer">
       <div>
-        <GPSinfo @click.native="test" v-bind:gps-info="$store.state.info.left" />
+        <GPSinfo v-bind:gps-info="$store.state.info.left" />
         <GPSinfo v-bind:gps-info="$store.state.info.right" />  
       </div>
       <Open />
