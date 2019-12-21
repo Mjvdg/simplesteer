@@ -13,7 +13,8 @@
     <v-card-text>
       <v-radio-group v-model="mode">
         <v-radio label="Straight AB lines" value="straightABlines"></v-radio>
-        <v-radio label="Curved AB lines" value="curvedABlines"></v-radio>
+        <v-radio label="Curved lines" value="curvedLines"></v-radio>
+        <v-radio label="Path" value="path"></v-radio>
       </v-radio-group>
     </v-card-text>
   </v-card>
@@ -23,7 +24,7 @@
 export default {
   data() {
     return {
-  
+      
     };
   },
   computed: {

@@ -15,7 +15,7 @@
                 <v-list-item :key="field.title">
                   <v-list-item-avatar>
                     <v-icon v-if="field.type==='straightABlines'">mdi-ab-testing</v-icon>
-                    <v-icon v-if="field.type==='curvedABlines'">mdi-current-ac</v-icon>
+                    <v-icon v-if="field.type==='curvedLines'">mdi-current-ac</v-icon>
                   </v-list-item-avatar>
                   <v-list-item-content @click="openField(field.id)">
                     <v-list-item-title v-text="field.name"></v-list-item-title>

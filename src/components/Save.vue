@@ -11,11 +11,7 @@
           </v-card-title>
           <v-card-text>
             <v-container>
-              <v-row>
-                <v-col cols="12" sm="6" md="4">
-                  <v-text-field v-model="name" ref="txtName" hint="Enter a name for future reference or keep the random name" clearable outlined label="Name"></v-text-field>
-                </v-col>
-              </v-row>
+              <v-text-field v-model="name" ref="txtName" hint="Enter a name for future reference or keep the random name" clearable outlined label="Name"></v-text-field>
             </v-container>
           </v-card-text>
           <v-card-actions>

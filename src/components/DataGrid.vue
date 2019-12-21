@@ -24,6 +24,10 @@
       <th>Slope:</th>
       <td>{{currentSlope}}°</td>
     </tr>
+    <tr>
+      <th>Area:</th>
+      <td>{{recordedArea}}ha</td>
+    </tr>
   </table>
 </template>
 
@@ -37,7 +41,8 @@ export default {
       currentLineNumber: undefined,
       currentWheelAngle: undefined,
       targetSteeringAngle: undefined,
-      currentSlope: undefined
+      currentSlope: undefined,
+      recordedArea: 0
     };
   },
   sockets: {
@@ -58,6 +63,9 @@ export default {
     },
     targetSteeringAngle(data) {
       this.targetSteeringAngle = parseFloat(data.value).toFixed(2);
+    },
+    recordedArea(data){
+      this.recordedArea = parseFloat(data/10000).toFixed(4);
     }
   }
 };
