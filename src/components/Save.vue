@@ -7,7 +7,7 @@
       <v-dialog v-model="dialog" max-width="600px">
         <v-card>
           <v-card-title>
-            <span class="headline">Save lines</span>
+            <span class="headline">Save field</span>
           </v-card-title>
           <v-card-text>
             <v-container>
