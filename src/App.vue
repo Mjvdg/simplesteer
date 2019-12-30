@@ -1,8 +1,6 @@
 <template>
   <div class="app">
-      <keep-alive>
       <router-view/>
-      </keep-alive>
       <BaseConnectionStatus />
   </div>
 </template>

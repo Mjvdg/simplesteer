@@ -22,6 +22,9 @@ export default {
     isCurvedRecording(isRecording){
       this.isRecording = isRecording;
     }
+  },
+  mounted(){
+    this.$socket.client.emit('getIsCurvedRecording');
   }
 };
 </script>

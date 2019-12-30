@@ -96,6 +96,9 @@ export default {
         y: data.value
       });
     }
+  },
+  mounted(){
+    this.$socket.client.emit('getSteeringHistory');
   }
 };
 </script>

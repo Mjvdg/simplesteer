@@ -40,13 +40,15 @@ export default {
     },
     onLongPressStop() {
       this.isLongPress = false;
-      console.log('triggers on mouseup of document');
     }
   },
   sockets: {
     isWorkRecording(isRecording) {
       this.isRecording = isRecording;
     }
+  },
+  mounted(){
+    this.$socket.client.emit('getIsWorkRecording');
   }
 };
 </script>

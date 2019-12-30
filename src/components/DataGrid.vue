@@ -67,6 +67,9 @@ export default {
     recordedArea(data){
       this.recordedArea = parseFloat(data/10000).toFixed(4);
     }
+  },
+  mounted(){
+    this.$socket.client.emit('getRecordedArea');
   }
 };
 </script>

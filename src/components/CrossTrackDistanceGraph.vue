@@ -68,6 +68,9 @@ export default {
         y: data.value
       });
     }
+  },
+  mounted(){
+    this.$socket.client.emit('getCrossTrackDistanceHistory');
   }
 };
 </script>

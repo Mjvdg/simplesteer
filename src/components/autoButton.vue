@@ -25,6 +25,9 @@ export default {
     isAutosteerAllowed(isAutosteerAllowed){
       this.isAutosteerAllowed = isAutosteerAllowed;
     }
+  },
+  mounted(){
+    this.$socket.client.emit('getIsAutosteerAllowedStatus');
   }
 }
 </script>
