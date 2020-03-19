@@ -1,3 +1,5 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/5717e48e-da58-4bd6-9862-d2df11ab5a05/deploy-status)](https://app.netlify.com/sites/computersmissiaen/deploys)
+
 # autosteer
 
 ## Project setup
