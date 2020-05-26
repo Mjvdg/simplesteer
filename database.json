@@ -14,13 +14,13 @@
     }
   ],
   "settings": {
-    "machineWidth": 300,
+    "machineWidth": 4000,
     "lineOffset": 0,
     "machine": {
       "antennaHeight": 2.66,
-      "antennaToFrontAxleDistance": 1.01,
-      "antennaToRearAxleDistance": 1,
-      "maxSteeringAngle": 45
+      "antennaToFrontAxleDistance": 1.23914,
+      "maxSteeringAngle": 45,
+      "isReverseSteeringEnabled": false
     },
     "steering": {
       "method": "hydraulic",
@@ -39,7 +39,7 @@
       "maxRight": 500
     },
     "targetPoint": {
-      "timeAheadSeconds": 1.5,
+      "timeAheadSeconds": 1.9,
       "minimumDistance": 0.33
     },
     "ntrip": {
