@@ -14,13 +14,12 @@
     }
   ],
   "settings": {
-    "machineWidth": 4000,
+    "machineWidth": 400,
     "lineOffset": 0,
     "machine": {
       "antennaHeight": 2.66,
       "antennaToFrontAxleDistance": 1.23914,
-      "maxSteeringAngle": 45,
-      "isReverseSteeringEnabled": false
+      "maxSteeringAngle": 45
     },
     "steering": {
       "method": "hydraulic",
