@@ -6,10 +6,10 @@ module.exports = {
     baudRate: 115200,
   },
   gpsLeft:{
-    path: '/dev/ttyACM0'
+    path: '/dev/ubloxf9pleft'
   },
   gpsRight: {
-    path: '/dev/ttyACM1'
+    path: '/dev/ubloxf9pright'
   },
   debug: true,
   simulator: true,

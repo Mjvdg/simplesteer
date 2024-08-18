@@ -1,18 +1,4 @@
 {
-  "abPoints": [
-    {
-      "title": "example",
-      "a": {
-        "latitude": 50.9516,
-        "longitude": 2.64623
-      },
-      "b": {
-        "latitude": 50.9516,
-        "longitude": 2.646222
-      },
-      "time": "2019-03-10T13:42:51.707Z"
-    }
-  ],
   "settings": {
     "machineWidth": 400,
     "lineOffset": 0,
