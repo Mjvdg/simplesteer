@@ -1,5 +1,6 @@
 # SimpleSteer-frontend
-![Screenshot-1](img/screenshot-1.jpg)
+<img src="img/screenshot-1.jpg" width="400">
+
 ## Getting started
 
 1) Replace "REPLACE_WITH_MAPBOX_ACCESSTOKEN" with your mapbox accesstoken.
