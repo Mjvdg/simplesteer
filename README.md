@@ -3,4 +3,4 @@
 
 ## Getting Started
 
-1) _REPLACE-WITH-UBLOX-ASSISTNOW-TOKEN_
+1) Replace the following with your token: _REPLACE-WITH-UBLOX-ASSISTNOW-TOKEN_
