@@ -18,7 +18,7 @@ const DB = require('./db/Repo');
 let ntripClient = new NtripClient({});
 assistNow();
 function assistNow() {
-  axios.get('http://online-live1.services.u-blox.com/GetOnlineData.ashx?token=_REPLACE-WITH-UBLOX-ASSISTNOW-TOKEN_;gnss=gps,glo,gal;datatype=eph,alm', { responseType: 'arraybuffer' })
+  axios.get(`http://online-live1.services.u-blox.com/GetOnlineData.ashx?token=${Config.ubloxToken};gnss=gps,glo,gal;datatype=eph,alm`, { responseType: 'arraybuffer' })
     .then(response => {
       portGpsLeft.write(response.data);
       portGpsRight.write(response.data);

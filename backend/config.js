@@ -11,6 +11,7 @@ module.exports = {
   gpsRight: {
     path: '/dev/ubloxf9pright'
   },
-  debug: true,
-  simulator: true,
+  debug: false,
+  simulator: false,
+  ubloxToken: "_REPLACE-WITH-UBLOX-ASSISTNOW-TOKEN_"
 }
