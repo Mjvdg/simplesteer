@@ -37,15 +37,6 @@
           outlined
         />
       </v-form>
-      <v-switch v-model="isReverseSteeringEnabled" label="Reverse steering" />
-      <v-text-field
-        v-model.number="antennaToRearAxleDistance"
-        :disabled="!isReverseSteeringEnabled"
-        type="number"
-        label="antenna to rear axle(cm)"
-        hint="horizontal distance between rear axle and antenna's"
-        outlined
-      />
     </v-card-text>
     <v-card-actions>
       <v-spacer></v-spacer>
@@ -67,8 +58,7 @@ export default {
       antennaHeight: undefined,
       antennaToFrontAxleDistance: undefined,
       antennaToRearAxleDistance: undefined,
-      maxSteeringAngle: undefined,
-      isReverseSteeringEnabled: false,
+      maxSteeringAngle: undefined
     };
   },
   methods: {
