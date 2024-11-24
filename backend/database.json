@@ -1,16 +1,17 @@
 {
   "settings": {
-    "machineWidth": 400,
+    "machineWidth": 140,
     "lineOffset": 0,
     "machine": {
       "antennaHeight": 2.66,
-      "antennaToFrontAxleDistance": 1.23914,
+      "antennaToFrontAxleDistance": 1.01,
+      "antennaToRearAxleDistance": 1,
       "maxSteeringAngle": 45
     },
     "steering": {
       "method": "hydraulic",
       "pid": {
-        "p": 1,
+        "p": 20,
         "i": 0,
         "d": 0
       },
@@ -19,18 +20,18 @@
       "minimumPulseDuration": 18
     },
     "steeringAngleSensor": {
-      "maxLeft": 10,
-      "straight": 200,
-      "maxRight": 500
+      "maxLeft": 381,
+      "straight": 500,
+      "maxRight": 1000
     },
     "targetPoint": {
-      "timeAheadSeconds": 1.9,
-      "minimumDistance": 0.33
+      "timeAheadSeconds": 1.5,
+      "minimumDistance": 0.8
     },
     "ntrip": {
       "host": "flepos.vlaanderen.be",
-      "username": "_HIDDEN-NTRIP-CREDENTIALS_",
-      "password": "_HIDDEN-NTRIP-CREDENTIALS_",
+      "username": "",
+      "password": "",
       "mountpoint": "FLEPOSVRS32GREC",
       "port": "2101"
     },
