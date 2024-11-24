@@ -4,20 +4,17 @@
 Autosteer software with a web interface. 
 
 
-## Hardware
- - 2 u-Blox ZED-F9P receivers
- - Raspberry pi 3
- - Arduino nano
-
-This repository contains 2 projects. For more info consult their readmes.
+This repository contains 3 projects. For more info consult their readme's.
     
 - [frontend](/frontend/)
 - [backend](/backend/)
+- [hardware](/hardware/)
 
 ## Features
 
-- ab-lines
-- PWM steering (elektric motor)
-- Pulses steering ()
-- ublox AssistNow
+- AB-lines
+- PWM steering (elektric motor / hydraulic proportional valve)
+- Pulses steering (hydraulic solenoid valve)
+- uBlox AssistNow
 - saving of lines
+- ...
