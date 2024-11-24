@@ -1,7 +1,7 @@
 # Simplesteer
 
 ## Description
-Autosteer software with a web interface. 
+u-Blox ZED-F9P RTK Autosteer software with a web interface. 
 
 
 This repository contains 3 projects. For more info consult their readme's.
@@ -17,4 +17,5 @@ This repository contains 3 projects. For more info consult their readme's.
 - Pulses steering (hydraulic solenoid valve)
 - uBlox AssistNow
 - saving of lines
+- ntrip client
 - ...
