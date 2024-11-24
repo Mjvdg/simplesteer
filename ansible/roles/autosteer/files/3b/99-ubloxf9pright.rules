@@ -1,0 +1,1 @@
+KERNEL=="ttyACM[0-9]", KERNELS=="1-1.4", SUBSYSTEMS=="usb", ATTRS{idProduct}=="01a9", ATTRS{idVendor}=="1546",SYMLINK+="ubloxf9pright"

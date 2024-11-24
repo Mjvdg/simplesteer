@@ -1,0 +1,89 @@
+- name: Ensure autosteer directory exist
+  ansible.builtin.file: 
+    path: ~/autosteer
+    state: directory
+
+- name: Ensure 99-ubloxf9pleft.rules udev rule is installed
+  become: true
+  ansible.builtin.copy:
+    src: "{{ model }}/99-ubloxf9pleft.rules"
+    dest: /etc/udev/rules.d
+
+- name: Ensure 99-ubloxf9pright.rules udev rule is installed
+  become: true
+  ansible.builtin.copy:
+    src: "{{ model }}/99-ubloxf9pright.rules"
+    dest: /etc/udev/rules.d
+
+- name: Ensure nodejs is installed
+  become: true
+  ansible.builtin.apt:
+    name: nodejs
+    state: present
+
+- name: Ensure simplesteer-backend.service is installed
+  become: true
+  ansible.builtin.copy:
+    src: simplesteer-backend.service
+    dest: /etc/systemd/system
+
+- name: Ensure simplesteer-frontend.service is installed
+  become: true
+  ansible.builtin.copy:
+    src: simplesteer-frontend.service
+    dest: /etc/systemd/system
+
+- name: Git checkout simplesteer to ansible-host as zip
+  delegate_to: 127.0.0.1
+  ansible.builtin.git:
+    repo: 'git@github.com:SimpleSteer/simplesteer.git'
+    dest: /tmp/simplesteer
+    archive: /tmp/simplesteer.zip
+
+- name: Extract simplesteer.zip 
+  ansible.builtin.unarchive:
+    src: /tmp/simplesteer.zip
+    dest: /home/pi/autosteer/simplesteer
+
+- name: Install backend packages based on package.json.
+  community.general.npm:
+    path: /home/pi/autosteer/simplesteer/backend
+
+- name: Clean frontend
+  ansible.builtin.file:
+    state: absent
+    path: /home/pi/autosteer/simplesteer/frontend
+
+- name: Create frontend directory
+  ansible.builtin.file:
+    path: /home/pi/autosteer/simplesteer/frontend
+    state: directory
+
+- name: Ensure frontend is installed
+  ansible.builtin.unarchive: 
+    src: ../downloads/simplesteer-frontend.zip
+    dest: ~/autosteer/simplesteer/frontend
+
+- name: Install ublox assistnow token
+  ansible.builtin.lineinfile:
+    path: /home/pi/autosteer/simplesteer/backend/config.js 
+    regexp: '^  ubloxToken: '
+    line: "  ubloxToken: \"{{ ublox_assist_now_token }}\""
+
+- name: Ensure simplesteer-backend is running
+  become: true
+  ansible.builtin.service:
+    name: simplesteer-backend.service
+    state: started
+    enabled: yes
+
+- name: Ensure simplesteer-frontend is running
+  become: true
+  ansible.builtin.service:
+    name: simplesteer-frontend.service
+    state: started
+    enabled: yes
+
+
+#- name: 
+# https://github.com/SimpleSteer/simplesteer/releases/download/1.0/simplesteer-frontend.zip
