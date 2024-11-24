@@ -21,8 +21,7 @@
     </v-content>
     <v-footer color="primary lighten-1" dark>
       <v-row justify="center">
-        Matthijs Missiaen
-        <a href="tel:+32495648902">+32 495 64 89 02</a>
+        Simplesteer
       </v-row>
     </v-footer>
   </v-app>
