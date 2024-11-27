@@ -18,6 +18,7 @@ This repository contains 3 projects. For more info consult their readme's.
 - uBlox AssistNow
 - saving of lines
 - ntrip client
+- Terrain compensation
 - ...
 
 ## Legal
