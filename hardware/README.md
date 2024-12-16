@@ -30,10 +30,13 @@
 - 5m 4mmØ Braided cable sleeve blue: https://www.aliexpress.com/item/32827379784.html
 - 5m 4mmØ Braided cable sleeve red: https://www.aliexpress.com/item/32824361527.html
 - AA-ROT-120 sensor
+- 2x 25cm ugreen micro usb cable
+- 50cm ugreen mini usb cable (between arduino and pi)
 ## 3D print models
 I recommend printing in PETG because PLA could become weak when the tractor cabin gets hot from the sun.
 - [simpleRTK2B case](https://cad.onshape.com/documents/1462f832841c4706ac87ddbb/w/64ea86a71f18d172a5a19b36/e/8c6e0eea0ad177bdd25b1dd9?renderMode=0&uiState=66c9dbd2cae3851e3285f41c)
 - [H-bridge + Arduino Nano case](https://cad.onshape.com/documents/1d4c39f33f5e81c853d12b12/w/6c4abd4b7e31bb9e0e3ae571/e/211b35d816884b6e6e3b05e2?renderMode=0&uiState=66c9dc0a9c88a80726002817)
+
 
 
 ## Getting Started
