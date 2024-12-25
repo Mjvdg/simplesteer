@@ -3,7 +3,7 @@ Description=simplesteer-frontend
 
 [Service]
 ExecStart=/usr/bin/python3 -m http.server 80
-WorkingDirectory=/home/pi/autosteer/simplesteer/frontend/
+WorkingDirectory=/home/pi/autosteer/simplesteer/frontend/dist
 
 
 [Install]

@@ -1,5 +1,5 @@
 all:
   hosts: 
-    TEST-PI:
-      ansible_host: 192.168.0.206
+    testPi3b+:
+      ansible_host: 192.168.0.207
       model: 3b+

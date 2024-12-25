@@ -20,6 +20,14 @@
   ansible.builtin.apt:
     name: nodejs
     state: present
+    update_cache: yes
+
+- name: Ensure npm is installed
+  become: true
+  ansible.builtin.apt:
+    name: npm
+    state: present
+    update_cache: yes
 
 - name: Ensure simplesteer-backend.service is installed
   become: true
@@ -33,16 +41,9 @@
     src: simplesteer-frontend.service
     dest: /etc/systemd/system
 
-- name: Git checkout simplesteer to ansible-host as zip
-  delegate_to: 127.0.0.1
-  ansible.builtin.git:
-    repo: 'git@github.com:SimpleSteer/simplesteer.git'
-    dest: /tmp/simplesteer
-    archive: /tmp/simplesteer.zip
-
-- name: Extract simplesteer.zip 
-  ansible.builtin.unarchive:
-    src: /tmp/simplesteer.zip
+- name: Copy simplesteer backend
+  ansible.builtin.copy:
+    src: ../../../../backend
     dest: /home/pi/autosteer/simplesteer
 
 - name: Install backend packages based on package.json.
@@ -54,21 +55,22 @@
     state: absent
     path: /home/pi/autosteer/simplesteer/frontend
 
-- name: Create frontend directory
-  ansible.builtin.file:
-    path: /home/pi/autosteer/simplesteer/frontend
-    state: directory
-
-- name: Ensure frontend is installed
-  ansible.builtin.unarchive: 
-    src: ../downloads/simplesteer-frontend.zip
-    dest: ~/autosteer/simplesteer/frontend
-
-- name: Install ublox assistnow token
-  ansible.builtin.lineinfile:
-    path: /home/pi/autosteer/simplesteer/backend/config.js 
-    regexp: '^  ubloxToken: '
-    line: "  ubloxToken: \"{{ ublox_assist_now_token }}\""
+- name: Run npm ci in the frontend folder.
+  ansible.builtin.command:
+    cmd: npm ci
+    chdir: ../../frontend
+  delegate_to: localhost
+  
+- name: Run npm build in the frontend folder.
+  ansible.builtin.command:
+    cmd: npm run build
+    chdir: ../../frontend
+  delegate_to: localhost
+  
+- name: Copy simplesteer frontend
+  ansible.builtin.copy:
+    src: ../../../../frontend/dist/
+    dest: /home/pi/autosteer/simplesteer/frontend/dist
 
 - name: Ensure simplesteer-backend is running
   become: true
@@ -84,6 +86,3 @@
     state: started
     enabled: yes
 
-
-#- name: 
-# https://github.com/SimpleSteer/simplesteer/releases/download/1.0/simplesteer-frontend.zip
