@@ -23,7 +23,7 @@ export default {
       previousWheelPositionMarker: undefined,
       fastRecordedWorkPointIds: [],
       accessToken:
-        "REPLACE_WITH_MAPBOX_ACCESSTOKEN",
+        process.env.VUE_APP_MAPBOX_ACCESSTOKEN,
       mapStyle: `mapbox://styles/mapbox/satellite-v9`,
       gpsLeftPosition: [],
       gpsRightPosition: []
