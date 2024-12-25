@@ -1,0 +1,88 @@
+- name: Ensure autosteer directory exist
+  ansible.builtin.file: 
+    path: ~/autosteer
+    state: directory
+
+- name: Ensure 99-ubloxf9pleft.rules udev rule is installed
+  become: true
+  ansible.builtin.copy:
+    src: "{{ model }}/99-ubloxf9pleft.rules"
+    dest: /etc/udev/rules.d
+
+- name: Ensure 99-ubloxf9pright.rules udev rule is installed
+  become: true
+  ansible.builtin.copy:
+    src: "{{ model }}/99-ubloxf9pright.rules"
+    dest: /etc/udev/rules.d
+
+- name: Ensure nodejs is installed
+  become: true
+  ansible.builtin.apt:
+    name: nodejs
+    state: present
+    update_cache: yes
+
+- name: Ensure npm is installed
+  become: true
+  ansible.builtin.apt:
+    name: npm
+    state: present
+    update_cache: yes
+
+- name: Ensure simplesteer-backend.service is installed
+  become: true
+  ansible.builtin.copy:
+    src: simplesteer-backend.service
+    dest: /etc/systemd/system
+
+- name: Ensure simplesteer-frontend.service is installed
+  become: true
+  ansible.builtin.copy:
+    src: simplesteer-frontend.service
+    dest: /etc/systemd/system
+
+- name: Copy simplesteer backend
+  ansible.builtin.copy:
+    src: ../../../../backend
+    dest: /home/pi/autosteer/simplesteer
+
+- name: Install backend packages based on package.json.
+  community.general.npm:
+    path: /home/pi/autosteer/simplesteer/backend
+
+- name: Clean frontend
+  ansible.builtin.file:
+    state: absent
+    path: /home/pi/autosteer/simplesteer/frontend
+
+- name: Run npm ci in the frontend folder.
+  ansible.builtin.command:
+    cmd: npm ci
+    chdir: ../../frontend
+  delegate_to: localhost
+  
+- name: Run npm build in the frontend folder.
+  ansible.builtin.command:
+    cmd: npm run build
+    chdir: ../../frontend
+  delegate_to: localhost
+  
+- name: Copy simplesteer frontend
+  ansible.builtin.copy:
+    src: ../../../../frontend/dist/
+    dest: /home/pi/autosteer/simplesteer/frontend/dist
+
+- name: Ensure simplesteer-backend is running
+  become: true
+  ansible.builtin.service:
+    name: simplesteer-backend.service
+    state: started
+    enabled: yes
+
+- name: Ensure simplesteer-frontend is running
+  become: true
+  ansible.builtin.service:
+    name: simplesteer-frontend.service
+    state: started
+    enabled: yes
+

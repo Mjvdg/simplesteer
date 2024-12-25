@@ -1,0 +1,14 @@
+[Unit]
+Description=simplesteer-backend
+Wants=network-online.target
+After=network.target network-online.target
+
+
+[Service]
+ExecStart=/usr/bin/node app.js
+WorkingDirectory=/home/pi/autosteer/simplesteer/backend
+
+
+[Install]
+WantedBy=multi-user.target
+
