@@ -19,7 +19,7 @@ This repository contains 4 projects. For more info consult their readme's.
 - Pulses steering (hydraulic solenoid valve)
 - uBlox AssistNow
 - saving of lines
-- ntrip client
+- NTRIP client
 - Dual GPS based terrain compensation
 - Dual GPS based heading
 - ...
