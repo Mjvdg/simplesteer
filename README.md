@@ -20,7 +20,8 @@ This repository contains 4 projects. For more info consult their readme's.
 - uBlox AssistNow
 - saving of lines
 - ntrip client
-- Terrain compensation
+- Dual GPS based terrain compensation
+- Dual GPS based heading
 - ...
 
 ## Legal
