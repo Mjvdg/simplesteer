@@ -1,7 +1,8 @@
 # Simplesteer
 
 ## Description
-u-Blox ZED-F9P RTK Autosteer software with a web interface that you can control with a smartphone and can run on a Raspberry Pi.
+RTK Autosteer software with a web interface that you can control with a smartphone and run on a Raspberry Pi.
+Based on 2x u-Blox ZED-F9P.
 
 
 This repository contains 4 projects. For more info consult their readme's.
