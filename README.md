@@ -1,7 +1,7 @@
 # Simplesteer
 
 ## Description
-RTK Autosteer software with a web interface that you can control with a smartphone and run on a Raspberry Pi.
+RTK Autosteer system with a web interface that you can control with a smartphone and run on a Raspberry Pi.
 Based on 2x u-Blox ZED-F9P.
 
 
