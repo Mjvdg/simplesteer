@@ -9,7 +9,7 @@
 1) Replace "REPLACE_WITH_MAPBOX_ACCESSTOKEN" with your mapbox accesstoken.
 2) Use node version 10.24.1
 
-## Project setup
+### Project setup
 ```
 npm install
 ```
