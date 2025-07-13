@@ -1,5 +1,8 @@
 # SimpleSteer-frontend
-<img src="img/screenshot-1.jpg" width="400">
+## Images
+
+<img width="400" src="img/screenshot-1.jpg">
+<img width="400" src="img/screenshot-2.jpg">
 
 ## Getting started
 
