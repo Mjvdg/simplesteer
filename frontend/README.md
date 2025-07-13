@@ -1,12 +1,15 @@
 # SimpleSteer-frontend
-<img src="img/screenshot-1.jpg" width="400">
+## Images
+
+<img width="400" src="img/screenshot-1.jpg">
+<img width="400" src="img/screenshot-2.jpg">
 
 ## Getting started
 
 1) Replace "REPLACE_WITH_MAPBOX_ACCESSTOKEN" with your mapbox accesstoken.
 2) Use node version 10.24.1
 
-## Project setup
+### Project setup
 ```
 npm install
 ```
