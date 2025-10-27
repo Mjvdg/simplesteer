@@ -1,7 +1,7 @@
 FROM node:10-alpine
 WORKDIR /backend
 COPY ./backend/package*.json ./
-RUN npm install
+
 COPY . .
 CMD ["npm", "CI"]
 
