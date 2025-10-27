@@ -1,0 +1,9 @@
+FROM node:10-alpine
+WORKDIR /backend
+COPY package*.json ./
+RUN npm install
+COPY . .
+CMD ["npm", "CI"]
+
+Run node app.js
+
